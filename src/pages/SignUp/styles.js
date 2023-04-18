@@ -14,7 +14,7 @@ a{
     margin:  auto ;
     cursor: pointer;
     width: fit-content;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
  
 section{

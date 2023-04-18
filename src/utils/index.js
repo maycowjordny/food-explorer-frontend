@@ -19,4 +19,19 @@ export function Resize() {
     })
 
     return isMobile;
+
+}
+
+export function IsAdm() {
+    const [isAdm, setIsAdm] = useState("")
+
+
+    useEffect(() => {
+        setIsAdm(false)
+        const role = window.localStorage.getItem("@role")
+        setIsAdm(role == "admin")
+    })
+
+
+    return isAdm;
 }
