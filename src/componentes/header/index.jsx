@@ -31,7 +31,6 @@ export function Header() {
                                     </div>
                                     <div>
                                         <p>admin</p>
-
                                     </div>
                                 </div>
                                 :
@@ -73,10 +72,26 @@ export function Header() {
                             </a>
                         </div>
 
-                        <div className="logo">
-                            <img src={logoImg} alt="logo food explorer" />
-                            <h6>food explorer</h6>
-                        </div>
+                        {
+                            isAdm ?
+
+                                <div className="logo">
+                                    <div>
+                                        <img src={logoImg} alt="logo food explorer" />
+                                        <h6>food explorer</h6>
+                                    </div>
+                                    <div>
+                                        <p>admin</p>
+                                    </div>
+                                </div>
+                                :
+                                <div className="logo">
+                                    <div>
+                                        <img src={logoImg} alt="logo food explorer" />
+                                        <h6>food explorer</h6>
+                                    </div>
+                                </div>
+                        }
 
                         <div className="order">
                             <a>

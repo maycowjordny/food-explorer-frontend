@@ -50,6 +50,32 @@ export const MobileModel = styled.div`
         height: 35px;
 }
 
+.logo div{
+
+display: flex;
+align-items: center;
+justify-content: end;
+gap: 1rem;
+
+    >h6{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 2.4rem;
+        white-space: nowrap;
+    }
+
+    p{
+        width: 3.4rem;
+        height: 2.0rem;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.2rem;
+        color:${({ theme }) => theme.COLORS.CYAN};
+    }
+}
+
 `;
 
 export const DesktopModel = styled.div`
