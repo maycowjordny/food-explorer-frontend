@@ -8,6 +8,7 @@ export function ButtonSvg({ icon: Icon, title, ...rest }) {
         <Container type="button"
             {...rest}>
             {Icon && <Icon size={22} />}
+            {title}
         </Container>
     )
 }
