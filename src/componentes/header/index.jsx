@@ -3,7 +3,7 @@ import { Container, MobileModel, DesktopModel } from "./styles";
 import logoImg from "../../assets/logo.png"
 import { BsList } from "react-icons/bs"
 import { Resize, IsAdm } from "../../utils/index";
-import { RiFileListLine, RiCloseLine, RiUserLine } from "react-icons/ri"
+import { RiFileListLine } from "react-icons/ri"
 import { FiSearch, FiUser } from "react-icons/fi"
 import { RxExit } from "react-icons/rx";
 import { ButtonSvg } from "../buttonSvg"
