@@ -18,8 +18,8 @@ export function Dish() {
 
                 <div id="info-dish">
 
+                    <label htmlFor="file">Imagem do prato</label>
                     <div id="file">
-                        <label htmlFor="file">Imagem do prato</label>
                         <label htmlFor="arquivo" id="labelFile"><RiUpload2Fill />selecione uma imagem</label>
                         <input
                             type="file"
