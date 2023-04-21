@@ -14,7 +14,7 @@ export function IngredientsTags({ value, onClick, isNew, ...rest }) {
             <button
                 type="button"
                 onClick={onClick}>
-                {isNew ? FiPlus : FiX}
+                {isNew ? < FiPlus /> : <FiX />}
             </button>
         </Container>
     )

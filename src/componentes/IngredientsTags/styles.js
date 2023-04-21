@@ -1,40 +1,36 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-width: fit-content;
-display: flex;
-align-items: center;
-background-color: ${({ theme, isNew }) => isNew ? "transparent" : theme.BACKGROUND_INPUT_TAGS};
+ display: flex;
+ align-items: center;
+background-color: ${({ theme, isNew }) => isNew ? "transparent" : theme.COLORS.BACKGROUND_TAGS};
 color: ${({ theme }) => theme.COLORS.WHITE};
-border: ${({ theme, isNew }) => isNew ? `2px dashed ${theme.COLORS.GRAY}` : "none"};
+border: ${({ theme, isNew }) => isNew ? `1px dashed ${theme.COLORS.GRAY}` : "none"};
+border-radius: 1rem;
 
->button{
+button{
     border:none;
     background:none;
 }
-border-radius: 10px;
->input{
+input{
+    width:100%;
     font-weight: 400;
-    font-size: 16px;
-    font-family: 'Roboto Slab';
-    padding:16px;
+    font-size: 1.6rem;
+    font-family: 'Roboto';
+    padding-left:1.6rem;
     border:none;
     background: transparent;
     outline: none;
-    width:100%;
-    height: 56px;
+    height:3.2rem;
     color: ${({ theme }) => theme.COLORS.WHITE};
   }
 svg{
-  display: flex;
-  align-items: center;
-  color: ${({ theme }) => theme.COLORS.PINK_700};
-    width:20px;
-    height:20px;
+  display:flex;
+  color: ${({ theme }) => theme.COLORS.WHITE};
+    width:2rem;
+    height:2rem;
+    padding-right:0.6rem;
 }
 
 
-
-
-
-    `;
+`;

@@ -5,6 +5,7 @@ export default {
         BACKGROUND_TAGS: "#76797B",
         BACKGROUND_INPUT_TAGS: "#0D161B",
 
+        RED_LIGTH: "#AB4D55",
         RED: "#750310",
         ORANGE: "#FF9000",
         CYAN: "#82F3FF",
