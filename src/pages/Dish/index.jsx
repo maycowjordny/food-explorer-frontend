@@ -8,24 +8,30 @@ import { RiArrowLeftSLine, RiUpload2Fill } from "react-icons/ri";
 import { Button } from "../../componentes/button";
 import { TextArea } from "../../componentes/textArea"
 
+
 export function Dish() {
+
+    const isToEdit = false
+
     return (
         <Container>
             <Header />
-            <main>
+            <div id="button-back">
                 <ButtonSvg icon={RiArrowLeftSLine} title="voltar" />
-                <h2>Adicionar prato</h2>
-
-                <div id="info-dish">
-
-                    <label htmlFor="file">Imagem do prato</label>
-                    <div id="file">
-                        <label htmlFor="arquivo" id="labelFile"><RiUpload2Fill />selecione uma imagem</label>
-                        <input
-                            type="file"
-                            name="arquivo"
-                            id="arquivo"
-                            placeholder="Selecione imagem" />
+            </div>
+            {
+                isToEdit ? <h2>Editar prato</h2>
+                    :
+                    <h2>Adicionar prato</h2>
+            }
+            <main>
+                <div className="box-one">
+                    <div id="info-dish">
+                        <label htmlFor="file">Imagem do prato</label>
+                        <div id="file">
+                            <label for="arquivo"> <RiUpload2Fill /> Selecione imagem </label>
+                            <input type="file" name="arquivo" id="arquivo" />
+                        </div>
                     </div>
 
                     <div id="name-dish">
@@ -42,28 +48,35 @@ export function Dish() {
                             <option value={"Selecione uma categoria"}>Selecione uma categoria</option>
                         </select>
                     </div>
+
                 </div>
 
-                <div className="ingradients-wrapper">
-                    <label htmlFor="ingredients">Ingredientes</label>
-                    <div id="input-tags">
-                        <IngredientsTags
-                            value="pão"
-                        />
-                        <IngredientsTags
-                            placeholder="Adicionar"
-                            isNew
+                <div className="box-two">
+                    <div className="ingradients-wrapper">
+                        <label htmlFor="ingredients" id="ingredients">Ingredientes</label>
+                        <div id="input-tags">
+                            <IngredientsTags
+                                value="pão"
+                            />
+                            <IngredientsTags
+                                placeholder="Adicionar"
+                                isNew
+                            />
+                        </div>
+                    </div>
+
+                    <div id="price">
+                        <label htmlFor="price">Preço</label>
+                        <Input
+                            type="number"
+                            placeholder="R$ 00,00"
                         />
                     </div>
                 </div>
 
-                <div id="price">
-                    <label htmlFor="price">Preço</label>
-                    <Input
-                        type="number"
-                        placeholder="R$ 00,00"
-                    />
-                </div>
+
+
+
 
                 <div id="description">
                     <label htmlFor="description">Descrição</label>
@@ -71,8 +84,15 @@ export function Dish() {
                 </div>
 
                 <div id="button-save-delete">
-                    <Button title="Salvar alterações" />
-                    <Button title="Excluir prato" />
+                    {
+                        isToEdit ?
+                            <>
+                                <Button title="Salvar alterações" />
+                                <Button title="Excluir prato" />
+                            </>
+                            :
+                            <Button title="Salvar alterações" />
+                    }
                 </div>
             </main>
             <Footer />
