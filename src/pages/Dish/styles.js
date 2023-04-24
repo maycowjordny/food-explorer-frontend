@@ -8,7 +8,9 @@ position: relative;
 min-height: 100vh;
 
 #button-back{
+  display: flex;
   padding: 0 3.2rem;
+  font-size: 16.5rem;
   margin-bottom:3.5rem;
   margin-top: 1.1rem;
 }
@@ -29,6 +31,12 @@ h2{
 
   }
 
+  #info-dish{
+    display: flex;
+      flex-direction: column;
+      gap:1.6rem ;
+  }
+
   #file{
     display: flex;
     justify-content: center;
@@ -37,6 +45,7 @@ h2{
     height: 4.8rem;
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_INPUT_TAGS};
     border-radius: 0.8rem;
+    margin-bottom: 2.4rem;
     
     >input[type="file"] {
       display: none;
@@ -67,9 +76,12 @@ h2{
 
     }
 
-    #category{
+    #name-dish{
       display: flex;
       flex-direction: column;
+      gap:1.6rem ;
+      margin-bottom: 2.4rem;
+    }
     
     
     select{
@@ -87,14 +99,33 @@ h2{
     background: url(${arrowSelect}) no-repeat ${({ theme }) => theme.COLORS.BACKGROUND_INPUT};
     background-position: center  right 1.2rem;
     padding-right:30px ;
-    }
   }
+  
+      #category{
+        display: flex;
+        flex-direction: column;
+        gap:1.6rem ;
+        
+}
+
+.ingradients-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap:1.6rem ;
+     margin-bottom: 2.4rem;
+}
+
+#price{
+  display: flex;
+    flex-direction: column;
+    gap:1.6rem ;
+}
 
 
-  #input-tags {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
+#input-tags {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
       height: 4.8rem;
@@ -108,18 +139,21 @@ h2{
     
   }
 
-  #button-save-delete{
-    margin-top:2.4rem;
-    display: flex;
-    gap: 3.2rem;
-    margin-bottom: 5rem;
+  textarea{
+    margin-top:1.6rem;
   }
 
-  #button-save-delete button:nth-child(1){
+  .button-wrapper{
+    display: flex;
+    gap:3.2rem;
+    margin-bottom: 5.3rem;
+  }
+
+  .button-save{
     background-color:${({ theme }) => theme.COLORS.RED_LIGTH} ;
   }
 
-  #button-save-delete button:nth-child(2){
+  #button-delete{
     background-color:${({ theme }) => theme.COLORS.BACKGROUND_INPUT_TAGS}
   }
 
@@ -130,34 +164,70 @@ h2{
   color: ${({ theme }) => theme.COLORS.GRAY_LIGHT};
   }
 
-  textarea{
-    margin-top:1.6rem;
-  }
-
-
-
 
   @media(min-width:1000px){
-.box-one{
-  display: flex;
-  align-items: center;
-  gap: 3.2rem;
 
-  >#info-dish{
-    width: 22.9rem;
+    #button-back button{
+      font-size: 1.8rem;
+    
+    }   
+
+  main,#button-back,h2{
+  padding: 0 12.3rem;
   }
 
-  >#name-dish{
-    width: 46.3rem;
+  main{
+    padding-bottom:11.6rem;
   }
-}
 
-.box-two{
-  display: flex;
-  align-items: center;
-  gap: 3.2rem;
-}
+  .box-one{
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
 
+    >#info-dish{
+      width: 22.9rem;
+    }
+
+    >#name-dish{
+      width: 46.3rem;
+    }
+
+    >#category{
+      width: 36.4rem;
+      margin-bottom: 2.4rem;
+    }
   }
+
+  .box-two{
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+
+
+    >.ingradients-wrapper{
+      width:83.7rem;
+    }
+
+
+    >#price{
+      width: 25.1rem;
+      margin-bottom: 2.4rem;
+    }
+  }
+  
+  .button-wrapper{
+    justify-content: end;
+    } 
+
+  .button-save{
+    width: 17.2rem;
+    }
+
+    #button-delete{
+      width: 13.5rem;
+    }
+
+    }
 
 `;

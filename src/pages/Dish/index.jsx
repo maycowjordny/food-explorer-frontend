@@ -33,7 +33,6 @@ export function Dish() {
                             <input type="file" name="arquivo" id="arquivo" />
                         </div>
                     </div>
-
                     <div id="name-dish">
                         <label htmlFor="name">Nome </label>
                         <Input
@@ -41,7 +40,6 @@ export function Dish() {
                             placeholder="Ex.: Salada Ceasar"
                         />
                     </div>
-
                     <div id="category">
                         <label htmlFor="category">Categoria</label>
                         <select>
@@ -50,7 +48,6 @@ export function Dish() {
                     </div>
 
                 </div>
-
                 <div className="box-two">
                     <div className="ingradients-wrapper">
                         <label htmlFor="ingredients" id="ingredients">Ingredientes</label>
@@ -64,7 +61,6 @@ export function Dish() {
                             />
                         </div>
                     </div>
-
                     <div id="price">
                         <label htmlFor="price">Preço</label>
                         <Input
@@ -73,27 +69,23 @@ export function Dish() {
                         />
                     </div>
                 </div>
-
-
-
-
-
                 <div id="description">
                     <label htmlFor="description">Descrição</label>
                     <TextArea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
                 </div>
-
-                <div id="button-save-delete">
-                    {
-                        isToEdit ?
-                            <>
-                                <Button title="Salvar alterações" />
-                                <Button title="Excluir prato" />
-                            </>
-                            :
-                            <Button title="Salvar alterações" />
-                    }
-                </div>
+                {
+                    isToEdit ?
+                        <>
+                            <div className="button-wrapper">
+                                <Button title="Excluir prato" id="button-delete" />
+                                <Button title="Salvar alterações" className="button-save" />
+                            </div>
+                        </>
+                        :
+                        <div className="button-wrapper">
+                            <Button title="Salvar alterações" className="button-save" />
+                        </div>
+                }
             </main>
             <Footer />
         </Container>
