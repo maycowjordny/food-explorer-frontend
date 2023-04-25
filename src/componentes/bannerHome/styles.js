@@ -4,7 +4,7 @@ export const Container = styled.div`
 
         border-radius:0.3rem;
         height:12rem;
-        margin:4.4rem  3rem;
+        margin:4.3rem 3rem 5.2rem 3rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -43,7 +43,7 @@ export const Container = styled.div`
     @media (min-width: 1000px) {
 
             height: 26rem;
-            margin:16.4rem  3rem;
+            
             transition: 500ms;
 
             img{

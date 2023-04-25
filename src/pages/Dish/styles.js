@@ -7,21 +7,21 @@ export const Container = styled.div`
 position: relative;
 min-height: 100vh;
 
-#button-back{
-  display: flex;
-  padding: 0 3.2rem;
-  font-size: 16.5rem;
-  margin-bottom:3.5rem;
-  margin-top: 1.1rem;
-}
+  #button-back{
+    display: flex;
+    padding: 0 3.2rem;
+    font-size: 16.5rem;
+    margin-bottom:3.5rem;
+    margin-top: 1.1rem;
+  }
 
-h2{
-  font-family: 'Poppins';
-  font-weight: 500;
-  font-size: 3.2rem;
-  padding: 0 3.2rem;
-  margin-bottom:2.4rem ;
-}
+  h2{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 3.2rem;
+    padding: 0 3.2rem;
+    margin-bottom:2.4rem ;
+  }
 
   main{
     display: flex;
@@ -68,19 +68,18 @@ h2{
 
     input[type=number]::-webkit-inner-spin-button { 
         -webkit-appearance: none;
-        
     }
-    input[type=number] { 
-      -moz-appearance: textfield;
-      appearance: textfield;
 
-    }
+      input[type=number] { 
+        -moz-appearance: textfield;
+        appearance: textfield;
+      }
 
     #name-dish{
-      display: flex;
-      flex-direction: column;
-      gap:1.6rem ;
-      margin-bottom: 2.4rem;
+        display: flex;
+        flex-direction: column;
+        gap:1.6rem ;
+        margin-bottom: 2.4rem;
     }
     
     
@@ -94,11 +93,11 @@ h2{
       padding: 1.6rem;
       border-radius: 0.5rem;
       appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: url(${arrowSelect}) no-repeat ${({ theme }) => theme.COLORS.BACKGROUND_INPUT};
-    background-position: center  right 1.2rem;
-    padding-right:30px ;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: url(${arrowSelect}) no-repeat ${({ theme }) => theme.COLORS.BACKGROUND_INPUT};
+      background-position: center  right 1.2rem;
+      padding-right:30px ;
   }
   
       #category{
@@ -108,24 +107,24 @@ h2{
         
 }
 
-.ingradients-wrapper{
-    display: flex;
-    flex-direction: column;
-    gap:1.6rem ;
-     margin-bottom: 2.4rem;
-}
+  .ingradients-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap:1.6rem ;
+        margin-bottom: 2.4rem;
+  }
 
-#price{
-  display: flex;
-    flex-direction: column;
-    gap:1.6rem ;
-}
+  #price{
+      display: flex;
+      flex-direction: column;
+      gap:1.6rem ;
+  }
 
 
 #input-tags {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
       height: 4.8rem;
