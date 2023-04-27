@@ -14,7 +14,6 @@ main{
     margin-top:3.6rem;
     font-size: 2.4rem;
     
-
     >svg{
         width: 3rem;
         height: 3.2rem;
