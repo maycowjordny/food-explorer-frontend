@@ -8,15 +8,17 @@ import { ButtonSvg } from "../../componentes/buttonSvg";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 export function Home() {
 
-    const carousel = useRef([])
+    const carousel = useRef(null)
 
     const handleLeftClick = (e) => {
-        e.preventDefault()
+
+        console.log(e)
+
         carousel.current.scrollLeft -= carousel.current.offsetWidth
     }
 
     const handleRightClick = (e) => {
-        e.preventDefault()
+
         carousel.current.scrollLeft += carousel.current.offsetWidth
 
     }
@@ -29,54 +31,45 @@ export function Home() {
                 <section>
                     <h1>Refeições</h1>
                     <div className="btn-carousel">
-                        <ButtonSvg icon={AiOutlineLeft} id="arrow-left" onClick={e => handleLeftClick(e)} />
+                        <ButtonSvg icon={AiOutlineLeft} id="arrow-left" onClick={handleLeftClick} />
 
-                        <div className="carousel" ref={carousel}>
-
-
-                            <Card data={
-                                {
-                                    name: "Salada Ravanello >",
-                                    price: " 49,97",
-                                    quantity: "01"
-                                }
-
-                            }
-                                className="card" />
+                        <div id="carousel" ref={carousel}>
 
 
                             <Card data={
                                 {
                                     name: "Salada Ravanello >",
                                     price: " 49,97",
-                                    quantity: "01"
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
                                 }
 
                             }
-                                className="card" />
+                            />
 
 
                             <Card data={
                                 {
                                     name: "Salada Ravanello >",
                                     price: " 49,97",
-                                    quantity: "01"
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
                                 }
 
                             }
-                                className="card" />
-
+                            />
 
 
                             <Card data={
                                 {
                                     name: "Salada Ravanello >",
                                     price: " 49,97",
-                                    quantity: "01"
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
                                 }
 
                             }
-                                className="card" />
+                            />
 
 
 
@@ -84,11 +77,12 @@ export function Home() {
                                 {
                                     name: "Salada Ravanello >",
                                     price: " 49,97",
-                                    quantity: "01"
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
                                 }
 
                             }
-                                className="card" />
+                            />
 
 
 
@@ -96,11 +90,13 @@ export function Home() {
                                 {
                                     name: "Salada Ravanello >",
                                     price: " 49,97",
-                                    quantity: "01"
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
+
                                 }
 
                             }
-                                className="card" />
+                            />
 
 
 
@@ -108,11 +104,12 @@ export function Home() {
                                 {
                                     name: "Salada Ravanello >",
                                     price: " 49,97",
-                                    quantity: "01"
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
                                 }
 
                             }
-                                className="card" />
+                            />
 
 
 
@@ -120,16 +117,78 @@ export function Home() {
                                 {
                                     name: "Salada Ravanello >",
                                     price: " 49,97",
-                                    quantity: "01"
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
+
                                 }
 
                             }
-                                className="card" />
+                            />
+
+                            <Card data={
+                                {
+                                    name: "Salada Ravanello >",
+                                    price: " 49,97",
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
+
+                                }
+
+                            }
+                            />
+
+                            <Card data={
+                                {
+                                    name: "Salada Ravanello >",
+                                    price: " 49,97",
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
+
+                                }
+
+                            }
+                            />
+
+                            <Card data={
+                                {
+                                    name: "Salada Ravanello >",
+                                    price: " 49,97",
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
+
+                                }
+
+                            }
+                            />
+
+                            <Card data={
+                                {
+                                    name: "Salada Ravanello >",
+                                    price: " 49,97",
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
+
+                                }
+
+                            }
+                            />
+
+                            <Card data={
+                                {
+                                    name: "Salada Ravanello >",
+                                    price: " 49,97",
+                                    quantity: "01",
+                                    description: "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim"
+
+                                }
+
+                            }
+                            />
 
 
 
                         </div>
-                        <ButtonSvg icon={AiOutlineRight} id="arrow-right" onClick={e => handleRightClick(e)} />
+                        <ButtonSvg icon={AiOutlineRight} id="arrow-right" onClick={handleRightClick} />
                     </div>
 
                 </section>

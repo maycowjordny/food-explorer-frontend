@@ -5,8 +5,7 @@ position: relative;
 min-height: 100vh;
 
   main{
-    padding:1.4rem 1.6rem 2.4rem 1.6rem ;
-    
+    padding:1.4rem 1.6rem 7.4rem 1.6rem ;
   }
 
  
@@ -21,27 +20,25 @@ section h1{
   padding: 0 2.4rem;
 }
 
-.card{
-  flex: none;
-}
 
 .btn-carousel{
   display: flex;
   align-items: center;
   overflow-x: auto;
-    scroll-behavior: smooth;
+    
   padding-bottom: 4.6rem;
 
 
-  .carousel{
+  #carousel{
     width: 100%;
     display: flex;
     gap: 1.6rem; 
     overflow-x: auto;
     scroll-behavior: smooth;
     
+    
     ::-webkit-scrollbar{
-      display: none;
+  display:none;
     }
 }
 
@@ -56,12 +53,16 @@ section h1{
         section{
             #buttonsCarousel{
                 display: flex;
-                .carousel{
+                #carousel{
                     display: flex;
                     gap: 2.7rem;     
                 }
             }
         }
+    }
+
+   section h1{
+      font-size: 3.2rem;
     }
 }
 `;

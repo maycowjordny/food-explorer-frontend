@@ -51,11 +51,20 @@ export function Header() {
 
 
                         <div className="order-button">
-                            <Button icon={RiFileListLine} title="Pedidos (0)" />
+                            {
+                                isAdm ? <Button title="Novo prato" />
+                                    :
+                                    <Button icon={RiFileListLine} title="Pedidos (0)" />
+                            }
                         </div>
 
                         <div className="profile">
-                            <ButtonSvg icon={FiUser} />
+                            {
+                                isAdm ? null
+                                    :
+                                    <ButtonSvg icon={FiUser} />
+
+                            }
                         </div>
 
                         <div className="logout">

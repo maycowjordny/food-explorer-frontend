@@ -4,7 +4,7 @@ export default {
         BACKGROUND_BOLD: "#001119",
         BACKGROUND_TAGS: "#76797B",
         BACKGROUND_INPUT_TAGS: "#0D161B",
-
+        BACKGROUND_TAGS_DETAILS: "#192227",
         RED_LIGTH: "#AB4D55",
         RED: "#750310",
         ORANGE: "#FF9000",
