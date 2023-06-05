@@ -182,6 +182,7 @@ min-height: 100vh;
   .box-one{
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 3.2rem;
 
     >#info-dish{
@@ -201,6 +202,7 @@ min-height: 100vh;
   .box-two{
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 3.2rem;
 
 

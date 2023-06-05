@@ -3,18 +3,13 @@ import ReactDOM from 'react-dom/client'
 import theme from './styles/theme'
 import GlobalStyles from './styles/global'
 import { ThemeProvider } from 'styled-components'
-import { SignIn } from './pages/SignIn'
-import { SignUp } from './pages/SignUp'
-import { Dish } from './pages/Dish'
-import { Home } from './pages/Home'
-import { Menu } from './pages/Menu'
-import { Details } from './pages/Details'
+import { Routes } from './routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Menu />
+      < Routes />
     </ThemeProvider>
   </React.StrictMode>,
 )
