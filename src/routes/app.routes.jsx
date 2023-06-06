@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { Dish } from '../pages/Dish'
 import { Home } from '../pages/Home'
 import { Details } from '../pages/Details'
+import { OrderHistory } from "../pages/OrderHistory";
 import { IsAdm } from "../utils/index";
 
 export function AppRoutes() {
@@ -16,8 +17,8 @@ export function AppRoutes() {
 
             <Route path="/dish" element={<Dish />} />
 
-
-            <Route path="/details/:id" element={<Details />} />
+            <Route path="/history" element={<OrderHistory />} />
+            <Route path="/details" element={<Details />} />
         </Routes>
     )
 }

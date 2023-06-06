@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 position: relative;
-width:100%;
-min-height: 100vh;
 padding: 0 5.6rem;
+
+main{
+    padding-bottom: 5.4rem;
+}
 
 
 .box-one{
@@ -103,6 +105,7 @@ main{
     align-items: center;
     justify-content: center;
     gap: 4.7rem;
+    padding-bottom: 15.7rem;
 }
 
 .box-one,.box-two{

@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
+width: 100%;
 position: relative;
 min-height: 100vh;
 
 main{
-    padding-bottom: 4.9rem;
+    padding-bottom: 4.7rem;
 }
 
 
 #button-back button{
     margin-top:3.6rem;
+    margin-left:5.6rem;
     font-size: 2.4rem;
     
     >svg{
