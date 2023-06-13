@@ -113,7 +113,7 @@ export function OrderHistory() {
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <span>🟡 Pendente</span>
+                                                    🟡Pendente
                                                 </td>
                                                 <td>
                                                     <span>00000004</span>

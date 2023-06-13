@@ -10,9 +10,9 @@ export const Container = styled.header`
 
 export const DesktopModel = styled.div`
 width: 100%;
-padding: 0 12.3rem;
+padding: 0 12rem;
 display: flex;
-gap: 3.2rem;
+gap: 2.7rem;
 align-items: center;
 justify-content: space-around;
 
@@ -43,8 +43,8 @@ justify-content: space-around;
     }
 
    .order-button{
-   width: 21.6rem;
-   }
+    width: 18.7rem;  
+ }
 
    .search{
     width:30rem;
@@ -52,7 +52,7 @@ justify-content: space-around;
 
    .buttons-header{
     font-weight: 400;
-    font-size: 1.4rem;      
+    font-size: 1.6rem;      
    }
 
 `;

@@ -52,6 +52,7 @@ border-radius: 0.8rem;
 
 .table-heade{
     display: flex;
+    align-items: center;
     gap: 3.1rem;
     font-size: 1.4rem;
     margin-bottom: 1.6rem;
@@ -73,6 +74,9 @@ select{
     padding-left: 1.6rem;
 }
 
+@media(max-width:380px){
+    padding: 2.4rem 1rem;
+}
 `;
 
 
@@ -102,7 +106,6 @@ table * {
     th{
         padding: 2.1rem;
         text-align: left;
-
         font-weight: 700;
         font-size: 1.4rem;
     }
@@ -110,6 +113,10 @@ table * {
     span{
         border:none;
         color:${({ theme }) => theme.COLORS.GRAY_LIGHT};
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.4rem;
     }
 
     select{
