@@ -97,7 +97,8 @@ min-height: 100vh;
       -moz-appearance: none;
       background: url(${arrowSelect}) no-repeat ${({ theme }) => theme.COLORS.BACKGROUND_INPUT};
       background-position: center  right 1.2rem;
-      padding-right:30px ;
+      padding-right:3rem;
+      cursor: pointer;
   }
   
       #category{

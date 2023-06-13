@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import arrowSelect from "../../assets/arrowSelect.png"
 
 export const Container = styled.div`
 
@@ -6,20 +7,46 @@ export const Container = styled.div`
     min-height: 100vh;
     position: relative;
 
+ 
 main{
-    padding: 1.7rem 3.2rem;
+    padding:3.5rem 3rem 10rem;
 }
+
+h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 3.2rem;
+}
+
+select{
+    width: 100%;
+    height: 48px;
+    background:${({ theme }) => theme.COLORS.BACKGROUND_INPUT_TAGS};;
+    color: white;
+    border: none;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url(${arrowSelect}) no-repeat ${({ theme }) => theme.COLORS.BACKGROUND_INPUT};
+    background-position: center  right 1.2rem;
+    padding-right:3rem;
+    cursor: pointer;
+}
+
 `;
 
 export const TableMobile = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
-height: 11.4rem;
-padding: 0 2rem;
+    
+padding: 2.4rem 2rem;
 color:${({ theme }) => theme.COLORS.GRAY_LIGHT};
+margin-bottom: 1.7rem;
 
-border: 2px solid #192227;
+border: 2px solid ${({ theme }) => theme.COLORS.BACKGROUND_TAGS_DETAILS};
 border-radius: 0.8rem;
 
 
@@ -30,8 +57,20 @@ border-radius: 0.8rem;
     margin-bottom: 1.6rem;
 }
 
+.table-heade div{
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
 .table-body{
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+}
+
+select{
+    margin-top: 1.6rem;
+    border-radius: 0.5rem;
+    padding-left: 1.6rem;
 }
 
 `;
@@ -39,22 +78,14 @@ border-radius: 0.8rem;
 
 export const TableDeskTop = styled.div`
 
-padding: 3.4rem 12.3rem;
-
-h1{
-    padding: 3.4rem 0;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 3.2rem;
-}
+padding: 0 12.3rem;
 
 
 table{
     width: 100%;
     border-collapse: collapse;
-    overflow: hidden;
-    border-radius:0.8rem 0.8rem 0 0 ;
+    position: relative;
+    margin-top: 3.4rem;
 }
 
 table * {
@@ -78,13 +109,11 @@ table * {
 
     span{
         border:none;
+        color:${({ theme }) => theme.COLORS.GRAY_LIGHT};
     }
 
     select{
-        width: 100%;
-        
         border: none;
-        outline: none;
     }
 
 `;
