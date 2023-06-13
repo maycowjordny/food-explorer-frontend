@@ -40,5 +40,8 @@ export const Container = styled.div`
         border-radius: 50%;
     }
 
-
+#remove-button{
+    height: 3.2rem;
+    width: 8.2rem;
+}
 `;

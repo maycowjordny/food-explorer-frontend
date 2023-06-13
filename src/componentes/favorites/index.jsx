@@ -1,6 +1,6 @@
 import { Container } from "./styles"
 import dishImage from "../../assets/imageDish.png"
-import { ButtonSvg } from "../buttonSvg"
+import { Button } from "../button"
 
 export function Favorites({ data }) {
     return (
@@ -8,9 +8,9 @@ export function Favorites({ data }) {
             <img src={dishImage} alt="Prato" />
             <div>
                 <h1>{data.name}</h1>
-                <ButtonSvg
-                    title="Remover dos Favoritos"
-                />
+                <Button
+                    title="Remover"
+                    id="remove-button" />
             </div>
         </Container>
     )
