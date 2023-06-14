@@ -5,17 +5,27 @@ export const Container = styled.div`
 header{
     display: flex;
     align-items: center;
-    padding: 0 12.4rem 3.0rem;
-    
     height:14.4rem ;
-    
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_BOLD};
+
+    #button-back{
+        margin: 0 3rem;
+        display: flex;        
+        justify-content: center;
+        height: 4rem;
+        width: 4rem;
+        background-color: ${({ theme }) => theme.COLORS.RED};
+        border-radius: 50%;
+    }
+
+    svg{
+        height: 2.5rem;
+        width: 3rem;
+    }
  
 }
 
-header a{
-    background: none;
-}
+
 
 `;
 
@@ -30,6 +40,12 @@ gap: 0.8rem;
 
 div:nth-child(4){
     margin-top: 1.6rem;
+}
+
+
+
+@media(max-width:500px){
+padding: 0 3rem 0;
 }
 
 `;
@@ -73,6 +89,27 @@ img{
         height: 2.0rem;
         color: ${({ theme }) => theme.COLORS.WHITE};
     }
+
+    @media(max-width:500px){
+    
+        width: 3.8rem;
+        height: 3.8rem;
+    
+        svg{
+            width: 1.8rem;
+            height: 1.8rem;
+    }
 }
+
+}
+
+
+@media(max-width:500px){
+    img{
+        width:14.6rem;
+        height:14.6rem;
+    }
+}
+
 
 `;

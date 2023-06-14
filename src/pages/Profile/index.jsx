@@ -7,7 +7,7 @@ export function Profile() {
     return (
         <Container>
             <header>
-                <ButtonSvg icon={FiArrowLeft} title="Voltar" />
+                <ButtonSvg icon={FiArrowLeft} id="button-back" />
             </header>
             <Form>
 

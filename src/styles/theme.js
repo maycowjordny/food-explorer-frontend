@@ -15,6 +15,7 @@ export default {
         WHITE: "#FFFFFF",
         WHITE_LIGTH: "#FFFAF1",
         DARK: "#000204",
+        RED_BUTTON_DELETE: "#AB4D55",
         BACKGROUND_INPUT: "#0D1D25",
         BACKGROUND_BANNER: "#00111A"
 
