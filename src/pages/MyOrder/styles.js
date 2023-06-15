@@ -22,21 +22,12 @@ h2{
 
 #button-advance{
   margin-top: 1.4rem;
-  width: 100%;
 }
 
-@media(min-width:700px){
+@media(min-width:500px){
   .button-wrapper{
-    width: 70%;
+    width: 50%;
 }
-}
-
-@media(min-width:400px){
-  #button-advance{
-  width: 100%;
-}
-
-
 }
 
 

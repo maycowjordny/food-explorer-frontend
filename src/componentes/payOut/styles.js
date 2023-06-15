@@ -25,6 +25,12 @@ img{
     background: none;
     border: 0.1rem solid  ${({ theme }) => theme.COLORS.BACKGROUND_TAGS} ;
     height: 8.1rem;
+
+    .active {
+                background-color:${({ theme }) => theme.COLORS.RED};
+                color: #fff;
+            }
+    
 }
 
 #button-credit{
@@ -39,13 +45,6 @@ img{
     border-bottom-left-radius:0;
 }
 
-#button-credit:focus{
-background-color: ${({ theme }) => theme.COLORS.RED} ;
-}
-
-#button-pix:focus{
-background-color: ${({ theme }) => theme.COLORS.RED} ;
-}
 
 
 `;
