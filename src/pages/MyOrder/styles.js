@@ -6,13 +6,57 @@ position: relative;
 min-height: 100vh;
 
   main{
-    padding:3.4rem 12.3rem 21rem   ;
+    padding:3.4rem 3.8rem 12rem;
   }
 
 h2{
     font-family: 'Poppins';
     font-weight: 500;
     font-size: 3.2rem;
+    margin-bottom: 3.4rem;
+}
+
+.amount{
+  margin-top: 1.4rem;
+}
+
+#button-advance{
+  margin-top: 1.4rem;
+  width: 100%;
+}
+
+@media(min-width:700px){
+  .button-wrapper{
+    width: 70%;
+}
+}
+
+@media(min-width:400px){
+  #button-advance{
+  width: 100%;
+}
+
+
+}
+
+
+@media(min-width:1000px){
+  
+  main{
+    padding:3.4rem 12.3rem 21rem   ;
+  }
+
+  .box-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 11.50rem;
+  }
+
+  .box-payment{
+    width:53rem;
+  }
+
 }
 
 `;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: flex;
     gap:1.3rem ;
+    margin-bottom: 3.19rem;
 
 div{
     display: flex;
@@ -15,7 +16,7 @@ div{
 span{
     font-family: 'Poppins';
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 img{
@@ -34,5 +35,19 @@ b{
     font-size: 1.2rem;
     color: ${({ theme }) => theme.COLORS.GRAY_LIGHT};
 }
+
+@media(min-width:1000px){
+
+    span{
+    font-size: 2rem;
+}
+
+.info{
+    flex-direction: row;
+    align-items: baseline;
+    gap:1rem ;
+}
+
+} 
 
 `;

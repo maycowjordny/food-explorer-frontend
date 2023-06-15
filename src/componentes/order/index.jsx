@@ -7,7 +7,9 @@ export function Order({ data, ...rest }) {
         <Container{...rest}>
             <img src={dishImage} alt="imagem do prato" />
             <div>
-                <span>{data.quantity} x {data.name}  <b>R${data.price}</b> </span>
+                <div className="info">
+                    <span>{data.quantity} x {data.name} <b>R${data.price}</b>  </span>
+                </div>
 
                 <div>
                     <ButtonSvg title="Excluir" id="button-delete" />
