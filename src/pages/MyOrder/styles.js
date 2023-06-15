@@ -57,6 +57,38 @@ h2{
     width:53rem;
   }
 
+  .scroll{
+    overflow-y:auto;
+    padding: 1rem;
+  }
+
+  *{
+    scrollbar-width: 20rem;
+    scrollbar-color: #8f54a0 #ffffff;
+  }
+
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.COLORS.BACKGROUND};
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color:${({ theme }) => theme.COLORS.BACKGROUND_TAGS};
+    border-radius: 10px;
+    border: 3px solid ${({ theme }) => theme.COLORS.BACKGROUND};
+  }
+
+  .box-order{
+    max-height: 53.6rem;
+  }
+
+  .amount{
+    font-size: 2rem;
+  }
+
 }
 
 `;

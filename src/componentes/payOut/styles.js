@@ -5,42 +5,47 @@ display: flex;
 flex-direction: column;
 
 width: 100%;
-height: 392px;
-border: 1px solid #76797B;
-border-radius: 8px ;
+height: 39.2rem;
+border: 0.1rem solid ${({ theme }) => theme.COLORS.BACKGROUND_TAGS};
+border-radius: 0.8rem ;
 
 img{
-    width:166.51px;
-    height:166.51px;
+    width:16.51rem;
+    height:16.51rem;
     margin: auto;
 }
 
 .buttons-wrapper{
     display: flex;
-    
-    
-
 }
 
 .buttons-wrapper button{
     display: flex;
     gap: 1.4rem;
     background: none;
-    border: 1px solid #76797B ;
-    
-    height: 81px;
+    border: 0.1rem solid  ${({ theme }) => theme.COLORS.BACKGROUND_TAGS} ;
+    height: 8.1rem;
 }
 
 #button-credit{
-    border-top-left-radius: 0px;
-    border-bottom-left-radius:0px;
-    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius:0;
+    border-bottom-right-radius: 0;
 }
 
 #button-pix{
-    border-top-right-radius: 0px;
-    border-bottom-right-radius:0px ;
-    border-bottom-left-radius:0px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius:0;
+    border-bottom-left-radius:0;
 }
+
+#button-credit:focus{
+background-color: ${({ theme }) => theme.COLORS.RED} ;
+}
+
+#button-pix:focus{
+background-color: ${({ theme }) => theme.COLORS.RED} ;
+}
+
 
 `;
