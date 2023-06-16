@@ -63,6 +63,15 @@ img{
                 border-radius: 5px;
                             
             }
+
+            input[type=number]::-webkit-inner-spin-button { 
+            -webkit-appearance: none;
+            }
+            input[type=number] { 
+            -moz-appearance: textfield;
+            appearance: textfield;
+
+            }
     
             #inputs-Wrapper{
                 display: flex;
@@ -77,6 +86,13 @@ img{
                     font-size:3.0rem;
                     margin-right: 8px;
                 }
+            }
+        }
+
+        @media(min-width:1000px){
+            #boxPayment{
+                max-width: 60rem;
+                margin: 0 auto;
             }
         }
 

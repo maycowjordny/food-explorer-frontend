@@ -55,6 +55,14 @@ justify-content: space-around;
     font-size: 1.6rem;      
    }
 
+
+   @media(max-width:1300px){
+    .buttons-header{
+    font-size: 1.4rem;      
+   }
+
+   }
+
 `;
 
 export const MobileModel = styled.div`

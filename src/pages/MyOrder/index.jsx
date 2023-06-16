@@ -3,13 +3,11 @@ import { PayOut } from "../../componentes/payOut";
 import { Button } from "../../componentes/button";
 import { Footer } from "../../componentes/footer";
 import { NewHeader } from "../../componentes/newHeader";
-import { WINDOW_MOBILE_WIDTH, WINDOW_MOBILE_DESCRIPTION } from "../../utils/constants";
+import { WINDOW_MOBILE_WIDTH } from "../../utils/constants";
 import { Order } from "../../componentes/order";
 import { Resize } from "../../utils/index";
 export function MyOrder() {
     const isMobile = Resize()
-
-
 
     return (
         <Container>
