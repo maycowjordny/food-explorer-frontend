@@ -5,7 +5,7 @@ display: flex;
 flex-direction: column;
 
 width: 100%;
-height: 39.2rem;
+min-height: 39.2rem;
 border: 0.1rem solid ${({ theme }) => theme.COLORS.BACKGROUND_TAGS};
 border-radius: 0.8rem ;
 
@@ -44,6 +44,41 @@ img{
     border-bottom-right-radius:0;
     border-bottom-left-radius:0;
 }
+
+#boxPayment{
+            display: flex;
+            flex-direction: column;
+            gap: 3.7rem;
+            padding: 5.3rem 2.7rem 0;
+
+           
+    
+            #inputPayments{
+                display: flex;
+                gap: 1.7rem;
+            }
+                    
+            input{
+                border: solid 1px ${({ theme }) => theme.COLORS.INPUT_TAG};
+                border-radius: 5px;
+                            
+            }
+    
+            #inputs-Wrapper{
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+    
+            button{
+                border-radius: 5px;
+                margin-bottom: 5.8rem;
+                svg{
+                    font-size:3.0rem;
+                    margin-right: 8px;
+                }
+            }
+        }
 
 
 
