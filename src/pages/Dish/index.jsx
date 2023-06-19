@@ -16,15 +16,18 @@ export function Dish() {
     return (
         <Container>
             <Header />
-            <div id="button-back">
-                <ButtonSvg icon={RiArrowLeftSLine} title="voltar" />
-            </div>
-            {
-                isToEdit ? <h2>Editar prato</h2>
-                    :
-                    <h2>Adicionar prato</h2>
-            }
             <main>
+                <div id="button-back">
+                    <ButtonSvg icon={RiArrowLeftSLine} title="voltar" />
+                </div>
+                <div className="box-title">
+                    {
+                        isToEdit ?
+                            <h2>Editar prato</h2>
+                            :
+                            <h2>Adicionar prato</h2>
+                    }
+                </div>
                 <div className="box-one">
                     <div id="info-dish">
                         <label htmlFor="file">Imagem do prato</label>
@@ -69,23 +72,32 @@ export function Dish() {
                         />
                     </div>
                 </div>
-                <div id="description">
-                    <label htmlFor="description">Descrição</label>
-                    <TextArea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
-                </div>
-                {
-                    isToEdit ?
-                        <>
-                            <div className="button-wrapper">
-                                <Button title="Excluir prato" id="button-delete" />
-                                <Button title="Salvar alterações" className="button-save" />
+                <div className="box-three">
+                    <div id="inputTextArea">
+                        <label htmlFor="description">Descrição</label>
+                        <TextArea
+                            placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                        />
+                    </div>
+                    {
+                        isToEdit ?
+                            <div id="buttons">
+                                < Button
+                                    id="buttonDelete"
+                                    title="Excluir prato"
+                                />
+                                < Button
+                                    id="button-save"
+                                    title="Salvar alterações"
+                                />
                             </div>
-                        </>
-                        :
-                        <div className="button-wrapper">
-                            <Button title="Salvar alterações" className="button-save" />
-                        </div>
-                }
+                            :
+                            < Button
+                                id="button-save"
+                                title="Salvar alterações"
+                            />
+                    }
+                </div>
             </main>
             <Footer />
         </Container>

@@ -7,27 +7,29 @@ export const Container = styled.div`
 position: relative;
 min-height: 100vh;
 
+
   #button-back{
     display: flex;
-    padding: 0 3.2rem;
-    font-size: 16.5rem;
-    margin-bottom:3.5rem;
     margin-top: 1.1rem;
+    
+    >button{
+      font-size: 1.6rem;
+    }
   }
 
   h2{
+    display: flex;
     font-family: 'Poppins';
     font-weight: 500;
     font-size: 3.2rem;
-    padding: 0 3.2rem;
-    margin-bottom:2.4rem ;
+    margin-bottom:2.4rem;
   }
 
   main{
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
-    padding: 0 3.2rem 7.5rem;
+    padding: 0 3.2rem 11.5rem;
 
   }
 
@@ -139,21 +141,17 @@ min-height: 100vh;
     
   }
 
-  textarea{
-    margin-top:1.6rem;
-  }
-
-  .button-wrapper{
+  #buttons{
     display: flex;
     gap:3.2rem;
-    margin-bottom: 5.3rem;
+    margin-top: 2.4rem;
   }
 
-  .button-save{
+  #button-save{
     background-color:${({ theme }) => theme.COLORS.RED_LIGTH} ;
   }
 
-  #button-delete{
+  #buttonDelete{
     background-color:${({ theme }) => theme.COLORS.BACKGROUND_INPUT_TAGS}
   }
 
@@ -169,15 +167,24 @@ min-height: 100vh;
 
     #button-back button{
       font-size: 1.8rem;
-    
     }   
 
-  main,#button-back,h2{
-  padding: 0 12.3rem;
+  main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 12.3rem 11.6rem;
   }
 
-  main{
-    padding-bottom:11.6rem;
+  .box-title{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    >h2{
+      width: 112rem;
+      margin: auto;
+    }
   }
 
   .box-one{
@@ -217,19 +224,28 @@ min-height: 100vh;
       margin-bottom: 2.4rem;
     }
   }
-  
-  .button-wrapper{
-    justify-content: end;
-    } 
 
-  .button-save{
-    width: 17.2rem;
-    }
+  .box-three{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3.2rem;
+  #inputTextArea{
+      width: 100%;
+  }
 
-    #button-delete{
-      width: 13.5rem;
-    }
+  button{
+      width: 20.0rem;
+      border-radius: 5px;
+  }
+  }
 
-    }
+  #buttons{
+  display: flex;
+  gap: 3.2rem;
+  }
+  }
 
+ 
 `;
