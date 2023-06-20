@@ -115,10 +115,15 @@ justify-content: space-around;
 
    .order-button{
    width: 21.6rem;
+
+   button{
+    white-space:nowrap ;
+    padding: 1.2rem 3.2rem;
+   }
    }
 
    .search{
-    width:58.1rem;
+    width:100%;
    }
 
 `;

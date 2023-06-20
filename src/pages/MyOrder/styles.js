@@ -6,6 +6,7 @@ position: relative;
 min-height: 100vh;
 
   main{
+   
     padding:3.4rem 3.8rem 12rem;
   }
 
@@ -34,6 +35,8 @@ h2{
 @media(min-width:1000px){
   
   main{
+    display: flex;
+    justify-content: space-between;
     padding:3.4rem 12.3rem 21rem   ;
   }
 

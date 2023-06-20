@@ -12,11 +12,29 @@ export function PayOut() {
 
     const [payment, setPayment] = useState(false);
 
+    const handlePayment = () => {
+        setPayment(!payment)
+    }
+    console.log(payment)
     return (
         <Container>
             <div className="buttons-wrapper">
-                <Button title="PIX" id="button-pix" icon={FaQrcode} />
-                <Button icon={FaRegCreditCard} title="Crédito" id="button-credit" />
+                <Button
+                    title="PIX"
+                    id="button-pix"
+                    icon={FaQrcode}
+                    onClick={handlePayment}
+                    className={!payment ? "active" : ""}
+
+                />
+
+                <Button
+                    icon={FaRegCreditCard}
+                    title="Crédito"
+                    id="button-credit"
+                    onClick={handlePayment}
+                    className={payment ? "active" : ""}
+                />
             </div>
             {
                 payment ?

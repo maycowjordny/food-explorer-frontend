@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const Container = styled.textarea`
     display: flex;
     justify-content: center;
-    color: ${({ theme }) => theme.COLORS.WHITE};
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_INPUT_TAGS};
     border-radius: 0.8rem;
     font-family: 'Roboto';
     outline: none;
@@ -13,7 +11,9 @@ export const Container = styled.textarea`
     width: 100%;
     height: 17.2rem;
     resize: none;
-
+    
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_INPUT_TAGS};
         ::placeholder{
             font-size: 1.6rem;
         }

@@ -13,56 +13,55 @@ export function MyOrder() {
         <Container>
             <NewHeader />
             <main>
-                <div className="box-container">
-                    <div>
-                        <h2>Meu pedido </h2>
-                        <div className="scroll">
-                            <div className="box-order">
-                                <Order data={
-                                    {
-                                        name: "Salada Ravanello",
-                                        price: " 49,97",
-                                        quantity: "01",
-                                    }
 
-                                } />
-                                <Order data={
-                                    {
-                                        name: "Salada Ravanello",
-                                        price: " 49,97",
-                                        quantity: "01",
-                                    }
+                <div>
+                    <h2>Meu pedido </h2>
+                    <div className="scroll">
+                        <div className="box-order">
+                            <Order data={
+                                {
+                                    name: "Salada Ravanello",
+                                    price: " 49,97",
+                                    quantity: "01",
+                                }
 
-                                } />
+                            } />
+                            <Order data={
+                                {
+                                    name: "Salada Ravanello",
+                                    price: " 49,97",
+                                    quantity: "01",
+                                }
 
-                                <Order data={
-                                    {
-                                        name: "Salada Ravanello",
-                                        price: " 49,97",
-                                        quantity: "01",
-                                    }
+                            } />
 
-                                } />
+                            <Order data={
+                                {
+                                    name: "Salada Ravanello",
+                                    price: " 49,97",
+                                    quantity: "01",
+                                }
 
-                            </div>
+                            } />
+
                         </div>
                     </div>
-                    <div className="box-payment">
-                        {
-                            isMobile > WINDOW_MOBILE_WIDTH ?
-                                <>
-                                    <h2>Pagamento</h2>
-                                    <PayOut />
-                                </>
-                                :
-                                null
-                        }
+                    <div className="amount">
+                        <span>Total: R$ 103,88</span>
                     </div>
                 </div>
-
-                <div className="amount">
-                    <span>Total: R$ 103,88</span>
+                <div className="box-payment">
+                    {
+                        isMobile > WINDOW_MOBILE_WIDTH ?
+                            <>
+                                <h2>Pagamento</h2>
+                                <PayOut />
+                            </>
+                            :
+                            null
+                    }
                 </div>
+
                 {
                     isMobile < WINDOW_MOBILE_WIDTH ?
                         <div className="button-wrapper">
@@ -72,7 +71,6 @@ export function MyOrder() {
                         null
                 }
             </main>
-
             <Footer />
         </Container>
     )

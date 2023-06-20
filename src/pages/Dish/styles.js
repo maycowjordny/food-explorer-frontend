@@ -162,6 +162,10 @@ min-height: 100vh;
   color: ${({ theme }) => theme.COLORS.GRAY_LIGHT};
   }
 
+  #inputTextArea{
+      margin-bottom: 2.4rem;
+  }
+
 
   @media(min-width:1000px){
 
@@ -180,11 +184,6 @@ min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: start;
-
-    >h2{
-      width: 112rem;
-      margin: auto;
-    }
   }
 
   .box-one{
@@ -194,15 +193,15 @@ min-height: 100vh;
     gap: 3.2rem;
 
     >#info-dish{
-      width: 22.9rem;
+      width: 22%;
     }
 
     >#name-dish{
-      width: 46.3rem;
+      width: 46%;
     }
 
     >#category{
-      width: 36.4rem;
+      width: 32%;
       margin-bottom: 2.4rem;
     }
   }
@@ -215,12 +214,12 @@ min-height: 100vh;
 
 
     >.ingradients-wrapper{
-      width:83.7rem;
+      width:80%;
     }
 
 
     >#price{
-      width: 25.1rem;
+      width: 20%;
       margin-bottom: 2.4rem;
     }
   }
@@ -230,7 +229,7 @@ min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 3.2rem;
+    
   #inputTextArea{
       width: 100%;
   }

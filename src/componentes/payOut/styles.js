@@ -17,16 +17,21 @@ img{
 
 .buttons-wrapper{
     display: flex;
+    
+    .active{
+        background-color: ${({ theme }) => theme.COLORS.RED};
+    }
 }
 
 .buttons-wrapper button{
     display: flex;
     gap: 1.4rem;
-    background: none;
+    background-color:${({ theme }) => theme.COLORS.BACKGROUND_BOLD};
     border: 0.1rem solid  ${({ theme }) => theme.COLORS.BACKGROUND_TAGS} ;
     height: 8.1rem;
 
 }
+
 
 #button-credit{
     border-top-left-radius: 0;

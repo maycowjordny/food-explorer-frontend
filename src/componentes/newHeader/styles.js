@@ -43,16 +43,22 @@ justify-content: space-around;
     }
 
    .order-button{
-    width: 18.7rem;  
+    width: 18.7rem;
+    
+    button{
+    white-space:nowrap ;
+    padding: 1.2rem 3.2rem;
+   }
  }
 
    .search{
-    width:30rem;
+    width:100%;
    }
 
    .buttons-header{
     font-weight: 400;
-    font-size: 1.6rem;      
+    font-size: 1.6rem;  
+    white-space:nowrap;
    }
 
 
