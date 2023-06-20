@@ -12,15 +12,11 @@ export function PayOut() {
 
     const [payment, setPayment] = useState(false);
 
-    const handlePayment = () => {
-        setPayment(!payment)
-    }
-
     return (
         <Container>
             <div className="buttons-wrapper">
                 <Button title="PIX" id="button-pix" icon={FaQrcode} />
-                <Button icon={FaRegCreditCard} title="Crédito" id="button-credit" className="active" />
+                <Button icon={FaRegCreditCard} title="Crédito" id="button-credit" />
             </div>
             {
                 payment ?

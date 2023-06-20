@@ -26,11 +26,6 @@ img{
     border: 0.1rem solid  ${({ theme }) => theme.COLORS.BACKGROUND_TAGS} ;
     height: 8.1rem;
 
-    .active {
-                background-color:${({ theme }) => theme.COLORS.RED};
-                color: #fff;
-            }
-    
 }
 
 #button-credit{

@@ -101,7 +101,17 @@ table * {
     td{
         padding: 1.6rem;
         text-align: left;
+
+        >h6{
+            white-space: nowrap;
+            border: none;
+            color:${({ theme }) => theme.COLORS.GRAY_LIGHT};
+            font-family: 'Roboto';
+            font-weight: 400;
+            font-size: 1.4rem;
+        }
     }
+
 
     th{
         padding: 2.1rem;
