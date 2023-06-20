@@ -7,15 +7,31 @@ import { ImSpoonKnife, ImCancelCircle } from "react-icons/im";
 import PIX from "../../assets/PIX.png";
 import QRCODE from "../../assets/QRCODE.png";
 import { Button } from "../button";
+import { api } from "../../service/api";
 
 export function PayOut() {
+
+    const [order, setOrder] = useState([])
 
     const [payment, setPayment] = useState(false);
 
     const handlePayment = () => {
         setPayment(!payment)
     }
-    console.log(payment)
+
+    useEffect(() => {
+        async function fetchOrder() {
+            const response = await api.get("/orders")
+            setOrder(response.data)
+        }
+
+        fetchOrder()
+
+    }, [])
+
+
+
+    console.log(order)
     return (
         <Container>
             <div className="buttons-wrapper">
@@ -60,9 +76,6 @@ export function PayOut() {
                         <Button title="Finalizar pagamento" icon={RiFileListLine} />
                     </div>
             }
-
-
-
         </Container>
     )
 }

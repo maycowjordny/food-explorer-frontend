@@ -4,8 +4,17 @@ import { Input } from "../../componentes/Input";
 import { WINDOW_MOBILE_WIDTH } from "../../utils/constants"
 import { Button } from "../../componentes/button"
 import { Resize } from "../../utils/index";
+import { useState } from "react";
+import { useAuth } from "../../hooks/auth";
 
 export function SignIn() {
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const { signIn } = useAuth()
+    function handleSignIn() {
+        signIn({ email, password })
+    }
 
     const isMobile = Resize();
     return (
@@ -32,6 +41,7 @@ export function SignIn() {
                             type="email"
                             icon={FiMail}
                             placeholder="Exemplo: exemplo@exemplo.com.br"
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
 
@@ -42,10 +52,11 @@ export function SignIn() {
                             type="password"
                             icon={FiLock}
                             placeholder="No mínimo 6 caracteres"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
-                    <Button title="Entrar" />
+                    <Button title="Entrar" onClick={handleSignIn} />
                     <a>Criar uma conta</a>
                 </Form>
             </main>
