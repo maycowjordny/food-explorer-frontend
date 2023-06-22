@@ -4,7 +4,6 @@ export const Container = styled.header`
   display: flex;
   background-color:${({ theme }) => theme.COLORS.BACKGROUND_BOLD};
   height:10.4rem;
-  grid-area: header;
   `;
 
 

@@ -4,10 +4,39 @@ import { Input } from "../../componentes/Input";
 import { WINDOW_MOBILE_WIDTH } from "../../utils/constants"
 import { Button } from "../../componentes/button"
 import { Resize } from "../../utils/index";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { api } from "../../service/api";
+
 
 export function SignUp() {
 
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate()
+    function handleSignUp() {
+        if (!name || !email || !password) {
+            return alert("Preencha todos os campos!")
+        }
+
+        api.post("/users", { name, email, password })
+            .then(() => {
+                alert("Usuário cadastrado com sucesso!")
+                navigate("/")
+            }).catch(error => {
+                if (error.response) {
+                    alert(error.response.data.message)
+                } else {
+                    alert("Não foi possível cadastrar")
+                }
+            })
+
+    }
+
     const isMobile = Resize();
+
     return (
         <Container>
             <section>
@@ -32,6 +61,7 @@ export function SignUp() {
                             type="name"
                             icon={FiUser}
                             placeholder="Exemplo: Maria da Silva"
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </div>
 
@@ -41,6 +71,7 @@ export function SignUp() {
                             type="email"
                             icon={FiMail}
                             placeholder="Exemplo: exemplo@exemplo.com.br"
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
 
@@ -51,11 +82,12 @@ export function SignUp() {
                             type="password"
                             icon={FiLock}
                             placeholder="No mínimo 6 caracteres"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
-                    <Button title="Entrar" />
-                    <a>Já tenho uma conta</a>
+                    <Button title="Criar conta" onClick={handleSignUp} />
+                    <Link to="/">Já tenho uma conta</Link>
                 </Form>
             </main>
         </Container>

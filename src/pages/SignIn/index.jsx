@@ -6,12 +6,14 @@ import { Button } from "../../componentes/button"
 import { Resize } from "../../utils/index";
 import { useState } from "react";
 import { useAuth } from "../../hooks/auth";
+import { Link } from "react-router-dom";
 
 export function SignIn() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const { signIn } = useAuth()
+
     function handleSignIn() {
         signIn({ email, password })
     }
@@ -57,7 +59,7 @@ export function SignIn() {
                     </div>
 
                     <Button title="Entrar" onClick={handleSignIn} />
-                    <a>Criar uma conta</a>
+                    <Link to="/register">Criar uma conta</Link>
                 </Form>
             </main>
         </Container>

@@ -15,6 +15,7 @@ export const Container = styled.div`
         cursor: pointer;
         width: fit-content;
         font-size: 14px;
+        color: ${({ theme }) => theme.COLORS.WHITE};
     }
  
     section{

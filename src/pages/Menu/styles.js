@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+position: fixed;
+background-color:${({ theme }) => theme.COLORS.BACKGROUND};
+width: 100%;
+
+
 
 header{
   display: flex;
   flex-direction:row;
   background-color:${({ theme }) => theme.COLORS.BACKGROUND_BOLD};
-  height:8.4rem;
+  height:10.4rem;
   padding: 0 2.8rem;
   
   svg{
@@ -25,15 +30,15 @@ header{
 
 main{
     margin-top:3.6rem ;
-    padding: 0 2.8rem;
+    padding: 0 2.8rem 1rem;
     
     input{
         border-radius: 0.5rem;
     }
 
-    #button-logout{
-        margin-top: 4.6rem;
-        font-size: 24px;
+  button {
+        padding-top:1rem ;
+        font-size: 2.4rem;
         font-weight: 300;
     }
 

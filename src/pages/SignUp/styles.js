@@ -15,6 +15,7 @@ a{
     cursor: pointer;
     width: fit-content;
     font-size: 1.4rem;
+    color: ${({ theme }) => theme.COLORS.WHITE};
 }
  
 section{

@@ -35,3 +35,14 @@ export function IsAdm() {
 
     return isAdm;
 }
+
+export function ShowMenu() {
+    const [showMenu, setShowMenu] = useState(false)
+
+    useEffect(() => {
+
+        setShowMenu(!showMenu)
+    }, [])
+
+    return showMenu;
+}
