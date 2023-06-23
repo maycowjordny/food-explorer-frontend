@@ -93,7 +93,7 @@ justify-content: space-around;
     align-items: center;
     justify-content: end;
     gap: 1rem;
-
+    color: ${({ theme }) => theme.COLORS.WHITE};
         >h6{
             font-family: 'Roboto';
             font-style: normal;
@@ -156,7 +156,7 @@ export const MobileModel = styled.div`
         display: flex;
         align-items: center;
         gap: 0.8rem;
-
+        color: ${({ theme }) => theme.COLORS.WHITE};
         >h6{
             font-family: 'Roboto';
             font-style: normal;
@@ -177,6 +177,7 @@ export const MobileModel = styled.div`
         top:3.3rem;
         background-color:${({ theme }) => theme.COLORS.RED};
         border-radius: 50%;
+        color: ${({ theme }) => theme.COLORS.WHITE};
     }
 
     svg {

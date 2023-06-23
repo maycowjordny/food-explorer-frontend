@@ -3,11 +3,12 @@ import { Input } from "../../componentes/Input"
 import { ButtonSvg } from "../../componentes/buttonSvg"
 import { Button } from "../../componentes/button"
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCamera } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 export function Profile() {
     return (
         <Container>
             <header>
-                <ButtonSvg icon={FiArrowLeft} id="button-back" />
+                <Link to="/"><ButtonSvg icon={FiArrowLeft} id="button-back" /></Link>
             </header>
             <Form>
 

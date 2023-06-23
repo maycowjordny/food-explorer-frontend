@@ -33,23 +33,26 @@ export function NewHeader() {
                     <DesktopModel>
                         {
                             isAdm ?
-
-                                <div className="logo">
-                                    <div>
-                                        <img src={logoImg} alt="logo food explorer" />
-                                        <h6>food explorer</h6>
+                                <Link to="/">
+                                    <div className="logo">
+                                        <div>
+                                            <img src={logoImg} alt="logo food explorer" />
+                                            <h6>food explorer</h6>
+                                        </div>
+                                        <div>
+                                            <p>admin</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p>admin</p>
-                                    </div>
-                                </div>
+                                </Link>
                                 :
-                                <div className="logo">
-                                    <div>
-                                        <img src={logoImg} alt="logo food explorer" />
-                                        <h6>food explorer</h6>
+                                <Link to="/">
+                                    <div className="logo">
+                                        <div>
+                                            <img src={logoImg} alt="logo food explorer" />
+                                            <h6>food explorer</h6>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                         }
 
                         <div className="search">
@@ -59,21 +62,20 @@ export function NewHeader() {
                             />
                         </div>
 
-                        <ButtonSvg title="Meus favoritos" className="buttons-header" />
+                        <Link to="/favorites"> <ButtonSvg title="Meus favoritos" className="buttons-header" /></Link>
                         {
                             isAdm ?
-                                <ButtonSvg title="Novo prato" className="buttons-header" />
+                                <Link to="/dish">  <ButtonSvg title="Novo prato" className="buttons-header" /></Link>
                                 :
-                                <ButtonSvg title="Histórico de pedidos" className="buttons-header" />
+                                <Link to="/history">   <ButtonSvg title="Histórico de pedidos" className="buttons-header" /></Link>
                         }
 
                         <div className="order-button">
-                            <Button icon={RiFileListLine} title="Pedidos (0)" />
+                            <Link to="/order"><Button icon={RiFileListLine} title="Pedidos (0)" /></Link>
                         </div>
 
-
                         <div className="logout">
-                            <ButtonSvg icon={RxExit} />
+                            <ButtonSvg icon={RxExit} onClick={signOut} />
                         </div>
 
                     </DesktopModel>
@@ -89,32 +91,36 @@ export function NewHeader() {
 
                             {
                                 isAdm ?
-
-                                    <div className="logo">
-                                        <div>
-                                            <img src={logoImg} alt="logo food explorer" />
-                                            <h6>food explorer</h6>
+                                    <Link to="/">
+                                        <div className="logo">
+                                            <div>
+                                                <img src={logoImg} alt="logo food explorer" />
+                                                <h6>food explorer</h6>
+                                            </div>
+                                            <div>
+                                                <p>admin</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p>admin</p>
-                                        </div>
-                                    </div>
+                                    </Link>
                                     :
-                                    <div className="logo">
-                                        <div>
-                                            <img src={logoImg} alt="logo food explorer" />
-                                            <h6>food explorer</h6>
+                                    <Link to="/">
+                                        <div className="logo">
+                                            <div>
+                                                <img src={logoImg} alt="logo food explorer" />
+                                                <h6>food explorer</h6>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                             }
 
-                            <div className="order">
-                                <a>
-                                    <ButtonSvg icon={RiFileListLine} />
-                                    <span>{0}</span>
-                                </a>
-                            </div>
-
+                            <Link to="/order">
+                                <div className="order">
+                                    <a>
+                                        <ButtonSvg icon={RiFileListLine} />
+                                        <span>{0}</span>
+                                    </a>
+                                </div>
+                            </Link>
                         </MobileModel>
 
 

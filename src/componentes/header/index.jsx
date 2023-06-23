@@ -34,23 +34,26 @@ export function Header() {
                     <DesktopModel>
                         {
                             isAdm ?
-
-                                <div className="logo">
-                                    <div>
-                                        <img src={logoImg} alt="logo food explorer" />
-                                        <h6>food explorer</h6>
+                                <Link to="/">
+                                    <div className="logo">
+                                        <div>
+                                            <img src={logoImg} alt="logo food explorer" />
+                                            <h6>food explorer</h6>
+                                        </div>
+                                        <div>
+                                            <p>admin</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p>admin</p>
-                                    </div>
-                                </div>
+                                </Link>
                                 :
-                                <div className="logo">
-                                    <div>
-                                        <img src={logoImg} alt="logo food explorer" />
-                                        <h6>food explorer</h6>
+                                <Link to="/">
+                                    <div className="logo">
+                                        <div>
+                                            <img src={logoImg} alt="logo food explorer" />
+                                            <h6>food explorer</h6>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                         }
 
                         <div className="search">
@@ -65,7 +68,7 @@ export function Header() {
                             {
                                 isAdm ? <Button title="Novo prato" />
                                     :
-                                    <Button icon={RiFileListLine} title="Pedidos (0)" />
+                                    <Link to="/order"> <Button icon={RiFileListLine} title="Pedidos (0)" /> </Link>
                             }
                         </div>
 
@@ -73,7 +76,7 @@ export function Header() {
                             {
                                 isAdm ? null
                                     :
-                                    <ButtonSvg icon={FiUser} />
+                                    <Link to="/profile">   <ButtonSvg icon={FiUser} />  </Link>
 
                             }
                         </div>
@@ -96,30 +99,36 @@ export function Header() {
                             {
                                 isAdm ?
 
-                                    <div className="logo">
-                                        <div>
-                                            <img src={logoImg} alt="logo food explorer" />
-                                            <h6>food explorer</h6>
-                                        </div>
-                                        <div>
-                                            <p>admin</p>
-                                        </div>
-                                    </div>
-                                    :
-                                    <div className="logo">
-                                        <div>
-                                            <img src={logoImg} alt="logo food explorer" />
-                                            <h6>food explorer</h6>
-                                        </div>
-                                    </div>
-                            }
+                                    <Link to="/">
 
-                            <div className="order">
-                                <a>
-                                    <ButtonSvg icon={RiFileListLine} />
-                                    <span>{0}</span>
-                                </a>
-                            </div>
+                                        <div className="logo">
+                                            <div>
+                                                <img src={logoImg} alt="logo food explorer" />
+                                                <h6>food explorer</h6>
+                                            </div>
+                                            <div>
+                                                <p>admin</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                    :
+                                    <Link to="/">
+                                        <div className="logo">
+                                            <div>
+                                                <img src={logoImg} alt="logo food explorer" />
+                                                <h6>food explorer</h6>
+                                            </div>
+                                        </div>
+                                    </Link>
+                            }
+                            <Link to="/order">
+                                <div className="order">
+                                    <a>
+                                        <ButtonSvg icon={RiFileListLine} />
+                                        <span>{0}</span>
+                                    </a>
+                                </div>
+                            </Link>
 
                         </MobileModel>
                         {

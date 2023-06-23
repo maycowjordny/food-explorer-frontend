@@ -8,8 +8,6 @@ min-height: 100vh;
     padding:1.4rem 1.6rem 7.4rem 1.6rem ;
   }
 
- 
-
 section h1{
   font-family: 'Poppins';
   font-style: normal;
