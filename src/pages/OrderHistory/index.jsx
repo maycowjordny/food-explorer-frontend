@@ -52,6 +52,28 @@ export function OrderHistory() {
                                             <span>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</span>
                                         </div>
                                     </TableMobile>
+                                    <TableMobile>
+                                        <div className="table-heade">
+                                            <div>000004</div>
+                                            <div>🟡 Pendente</div>
+                                            <div>20/05 às 18h00</div>
+                                        </div>
+                                        <div className="table-body">
+                                            <span>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</span>
+                                        </div>
+                                    </TableMobile>
+                                    <TableMobile>
+                                        <div className="table-heade">
+                                            <div>000004</div>
+                                            <div>🟡 Pendente</div>
+                                            <div>20/05 às 18h00</div>
+                                        </div>
+                                        <div className="table-body">
+                                            <span>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</span>
+                                        </div>
+                                    </TableMobile>
+
+
                                 </>
 
 

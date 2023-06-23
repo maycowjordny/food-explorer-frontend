@@ -4,15 +4,15 @@ import logoImg from "../../assets/logo.png"
 import { BsList } from "react-icons/bs"
 import { Resize, IsAdm, ShowMenu } from "../../utils/index";
 import { RiFileListLine } from "react-icons/ri"
-import { FiSearch, FiUser } from "react-icons/fi"
+import { FiSearch, FiUser, FiX } from "react-icons/fi"
 import { RxExit } from "react-icons/rx";
+import { Link } from "react-router-dom";
 import { ButtonSvg } from "../buttonSvg"
 import { Button } from "../button"
 import { Input } from "../Input"
 import { WINDOW_MOBILE_WIDTH } from "../../utils/constants"
 import { useAuth } from "../../hooks/auth";
 import { useState } from "react";
-import { Menu } from "../../pages/Menu";
 
 export function Header() {
     const isMobile = Resize();
@@ -123,7 +123,38 @@ export function Header() {
 
                         </MobileModel>
                         {
-                            menu ? <Menu /> : null
+                            menu ?
+                                <div className="show-menu">
+                                    <header>
+                                        <ButtonSvg icon={FiX} title="Menu" id="button-menu" onClick={handleMenu} />
+                                    </header>
+                                    <div className="box-menu">
+                                        <Input
+                                            icon={FiSearch}
+                                            placeholder="Busque por pratos ou ingredientes"
+                                        />
+                                        {
+                                            isAdm ?
+                                                <>
+                                                    <Link to="/dish"><ButtonSvg title="Novo Prato" /></Link>
+                                                    <div id="line"></div>
+                                                    <Link to="/history"><ButtonSvg title="Histórico" /></Link>
+                                                    <div id="line"></div>
+                                                </>
+                                                :
+                                                <>
+                                                    <Link to="/profile"><ButtonSvg title="Profile" className="buttons-menu" /></Link>
+                                                    <div id="line"></div>
+                                                    <Link to="/history"> <ButtonSvg title="Histórico de pedidos" className="buttons-menu" /></Link>
+                                                    <div id="line"></div>
+                                                    <Link to="/"> <ButtonSvg title="Sair" className="buttons-menu" onClick={signOut} /></Link>
+                                                    <div id="line"></div>
+                                                </>
+                                        }
+                                    </div>
+
+                                </div>
+                                : null
                         }
                     </>
             }
