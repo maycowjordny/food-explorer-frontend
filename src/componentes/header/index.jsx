@@ -12,18 +12,29 @@ import { Button } from "../button"
 import { Input } from "../Input"
 import { WINDOW_MOBILE_WIDTH } from "../../utils/constants"
 import { useAuth } from "../../hooks/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { api } from "../../service/api";
 
-export function Header() {
+
+export function Header({ handleCallback }) {
     const isMobile = Resize();
     const isAdm = IsAdm()
     const { signOut } = useAuth()
+
     const [menu, setMenu] = useState(false)
+    const [search, setSearch] = useState("")
 
     const handleMenu = () => {
         setMenu(!menu)
     }
 
+    useEffect(() => {
+
+        if (handleCallback != null) {
+            handleCallback(search)
+        }
+
+    }, [search]);
 
     return (
         <Container>
@@ -60,6 +71,7 @@ export function Header() {
                             <Input
                                 icon={FiSearch}
                                 placeholder="Busque por pratos ou ingredientes"
+                                onChange={(e) => setSearch(e.target.value)}
                             />
                         </div>
 
