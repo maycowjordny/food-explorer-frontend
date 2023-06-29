@@ -76,8 +76,22 @@ section{
 
     #add-button{
         height: 3.2rem;
-
     }
+
+   
+    input[type=number]::-webkit-inner-spin-button { 
+        -webkit-appearance: none;
+    }
+
+      input[type=number] { 
+        -moz-appearance: textfield;
+        appearance: textfield;
+      }
+    
+      #input-number{
+        background-color: ${({ theme }) => theme.COLORS.DARK};
+        width: 5rem;
+      }
 
     
     @media(min-width:1000px){

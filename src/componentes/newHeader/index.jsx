@@ -12,17 +12,27 @@ import { Input } from "../Input"
 import { Link } from "react-router-dom";
 import { WINDOW_MOBILE_WIDTH } from "../../utils/constants"
 import { useAuth } from "../../hooks/auth";
-import { useState } from "react";
+import { useState, useEffect, } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function NewHeader() {
     const isMobile = Resize();
     const isAdm = IsAdm()
+    const navigate = useNavigate()
     const { signOut } = useAuth()
     const [menu, setMenu] = useState(false)
+    const [search, setSearch] = useState("")
 
     const handleMenu = () => {
         setMenu(!menu)
     }
+
+    useEffect(() => {
+        if (!search == " ") {
+            navigate("/")
+        }
+
+    }, [search]);
 
     return (
         <Container>
@@ -59,6 +69,7 @@ export function NewHeader() {
                             <Input
                                 icon={FiSearch}
                                 placeholder="Busque por pratos ou ingredientes"
+                                onChange={(e) => setSearch(e.target.value)}
                             />
                         </div>
 
@@ -134,6 +145,7 @@ export function NewHeader() {
                                         <Input
                                             icon={FiSearch}
                                             placeholder="Busque por pratos ou ingredientes"
+                                            onChange={(e) => setSearch(e.target.value)}
                                         />
                                         {
                                             isAdm ?

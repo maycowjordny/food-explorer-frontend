@@ -29,9 +29,6 @@ export function PayOut() {
 
     }, [])
 
-
-
-    console.log(order)
     return (
         <Container>
             <div className="buttons-wrapper">

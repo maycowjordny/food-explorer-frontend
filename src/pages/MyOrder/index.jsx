@@ -6,8 +6,21 @@ import { NewHeader } from "../../componentes/newHeader";
 import { WINDOW_MOBILE_WIDTH } from "../../utils/constants";
 import { Order } from "../../componentes/order";
 import { Resize } from "../../utils/index";
+import { api } from "../../service/api";
+import { useEffect, useState } from "react";
+
 export function MyOrder() {
     const isMobile = Resize()
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        async function FecthOrders() {
+            const orderId = localStorage.getItem("orderId")
+            const response = await api.get(`/orders/${orderId}`)
+            setOrders(response.data)
+        }
+        FecthOrders()
+    }, [])
 
     return (
         <Container>
@@ -18,32 +31,14 @@ export function MyOrder() {
                     <h2>Meu pedido </h2>
                     <div className="scroll">
                         <div className="box-order">
-                            <Order data={
-                                {
-                                    name: "Salada Ravanello",
-                                    price: " 49,97",
-                                    quantity: "01",
-                                }
-
-                            } />
-                            <Order data={
-                                {
-                                    name: "Salada Ravanello",
-                                    price: " 49,97",
-                                    quantity: "01",
-                                }
-
-                            } />
-
-                            <Order data={
-                                {
-                                    name: "Salada Ravanello",
-                                    price: " 49,97",
-                                    quantity: "01",
-                                }
-
-                            } />
-
+                            {
+                                orders.map(order => (
+                                    <Order
+                                        key={order.id}
+                                        data={order}
+                                    />
+                                ))
+                            }
                         </div>
                     </div>
                     <div className="amount">

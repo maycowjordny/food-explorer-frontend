@@ -2,7 +2,7 @@ import { Container, MobileModel, DesktopModel } from "./styles";
 
 import logoImg from "../../assets/logo.png"
 import { BsList } from "react-icons/bs"
-import { Resize, IsAdm, ShowMenu } from "../../utils/index";
+import { Resize, IsAdm } from "../../utils/index";
 import { RiFileListLine } from "react-icons/ri"
 import { FiSearch, FiUser, FiX } from "react-icons/fi"
 import { RxExit } from "react-icons/rx";
@@ -13,7 +13,6 @@ import { Input } from "../Input"
 import { WINDOW_MOBILE_WIDTH } from "../../utils/constants"
 import { useAuth } from "../../hooks/auth";
 import { useState, useEffect } from "react";
-import { api } from "../../service/api";
 
 
 export function Header({ handleCallback }) {
@@ -153,6 +152,7 @@ export function Header({ handleCallback }) {
                                         <Input
                                             icon={FiSearch}
                                             placeholder="Busque por pratos ou ingredientes"
+                                            onChange={(e) => setSearch(e.target.value)}
                                         />
                                         {
                                             isAdm ?
