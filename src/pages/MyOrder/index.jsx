@@ -20,7 +20,7 @@ export function MyOrder() {
             setOrders(response.data)
         }
         FecthOrders()
-    }, [])
+    }, [orders])
 
     return (
         <Container>
@@ -42,7 +42,11 @@ export function MyOrder() {
                         </div>
                     </div>
                     <div className="amount">
-                        <span>Total: R$ 103,88</span>
+                        {
+                            orders.map(order => (
+                                <span key={order.id}>Total: R$ {order.amount.toFixed(2)}</span>
+                            ))
+                        }
                     </div>
                 </div>
                 <div className="box-payment">

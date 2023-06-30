@@ -1,15 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    display: flex;
-    gap:1.3rem ;
-    margin-bottom: 3.19rem;
 
-div{
+.modal{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3.35rem;
     
 }
 
@@ -17,11 +14,13 @@ span{
     font-family: 'Poppins';
     font-weight: 500;
     font-size: 1.5rem;
+    white-space:nowrap;
 }
 
 img{
-    width: 10.81rem;
-    height: 10.81rem;
+    width: 7.2rem;
+    height: 7.2rem;
+    border-radius: 50%;
 }
 
 #button-delete{

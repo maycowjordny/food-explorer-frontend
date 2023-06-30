@@ -1,8 +1,10 @@
 import { Container } from "./styles"
-import dishImage from "../../assets/imageDish.png"
 import { Button } from "../button"
+import DishPlaceholder from "../../assets/dish.png"
+import { api } from "../../service/api"
 
 export function Favorites({ data }) {
+    const dishImage = data.image ? `${api.defaults.baseURL}/image/${data.image}` : DishPlaceholder
     return (
         <Container>
             <img src={dishImage} alt="Prato" />

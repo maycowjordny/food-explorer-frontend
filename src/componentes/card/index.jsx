@@ -66,7 +66,7 @@ export function Card({ data, ...rest }) {
                     isMobile > WINDOW_MOBILE_WIDTH ? <h5>{data.description}</h5> : null
 
                 }
-                <span>R${data.price}</span>
+                <span>R${data.price.toFixed(2)}</span>
             </section>
 
             <div id="buttons-wrapper">
