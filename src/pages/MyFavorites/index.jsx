@@ -8,7 +8,7 @@ import { api } from "../../service/api";
 
 export function MyFavorites({ data, ...rest }) {
     const [favorites, setFavorites] = useState([]);
-    console.log(favorites)
+
     useEffect(() => {
         async function FecthFavorites() {
             const response = await api.get(`/favorites`)
@@ -16,6 +16,11 @@ export function MyFavorites({ data, ...rest }) {
         }
         FecthFavorites()
     }, [])
+
+    function handleDeleteDish(id) {
+        setFavorites(favorites.filter(favorite => favorite.id !== id));
+    }
+
     return (
         <Container>
             <NewHeader />
@@ -27,6 +32,7 @@ export function MyFavorites({ data, ...rest }) {
                             <Favorites
                                 key={favorite.id}
                                 data={favorite}
+                                onDelete={handleDeleteDish}
                             />
                         ))
                     }
