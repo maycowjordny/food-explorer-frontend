@@ -1,20 +1,21 @@
 import { Container } from "./styles";
-import dishImage from "../../assets/imageDish.png"
 import { ButtonSvg } from "../buttonSvg";
 import { WINDOW_MOBILE_WIDTH } from "../../utils/constants";
 import { Resize } from "../../utils/index";
-import DishPlaceholder from "../../assets/dish.png"
+import dishPlaceholder from "../../assets/dish.png"
 import { api } from "../../service/api";
 
 export function Order({ data, ...rest }) {
     const isMobile = Resize()
-    const dishImage = data.image ? `${api.defaults.baseURL}/image/${data.image}` : DishPlaceholder
+
+
     return (
-        <Container{...rest}>
+        <Container {...rest}>
             {
                 data.dishes.map((dish, index) => (
                     <div key={index} className="modal">
-                        <img src={dishImage} alt="imagem do prato" />
+
+                        <img src={dish.image ? `${api.defaults.baseURL}/image/${dish.image}` : dishPlaceholder} alt="imagem do prato" />
                         <div>
                             {
                                 isMobile < WINDOW_MOBILE_WIDTH ?

@@ -13,10 +13,8 @@ export function Favorites({ data, onDelete, ...rest }) {
         }
 
     }
-
     return (
-        <Container>
-
+        <Container {...rest}>
             <img src={imageUrl} alt="Prato" />
             <div>
                 <h1>{data.name}</h1>

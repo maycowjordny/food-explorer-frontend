@@ -4,6 +4,7 @@ import { Footer } from "../../componentes/footer"
 import { CardDetails } from "../../componentes/cardDetails";
 import { ButtonSvg } from "../../componentes/buttonSvg";
 import { RiArrowLeftSLine } from "react-icons/ri";
+
 export function Details() {
     return (
         <Container>

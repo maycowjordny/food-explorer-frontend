@@ -20,7 +20,7 @@ export function MyOrder() {
             setOrders(response.data)
         }
         FecthOrders()
-    }, [orders])
+    }, [])
 
     return (
         <Container>

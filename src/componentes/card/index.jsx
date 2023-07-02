@@ -1,5 +1,4 @@
 import { Container } from "./styles";
-import dishImage from "../../assets/imageDish.png"
 import { FiMinus, FiPlus, FiHeart, FiEdit } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { ButtonSvg } from "../buttonSvg"
@@ -10,6 +9,7 @@ import { Input } from "../Input";
 import { useState } from "react";
 import { api } from "../../service/api";
 import { Link } from "react-router-dom";
+import dishPlaceholder from "../../assets/dish.png"
 
 export function Card({ data, ...rest }) {
 
@@ -49,6 +49,7 @@ export function Card({ data, ...rest }) {
         setIsFavorite(false)
     }
 
+    const imageUrl = data.image ? `${api.defaults.baseURL}/image/${data.image}` : dishPlaceholder;
     return (
         <Container {...rest}>
             <div id="favorite">
@@ -60,7 +61,7 @@ export function Card({ data, ...rest }) {
                 }
             </div>
             <section>
-                <img src={dishImage} alt="imagem do prato" />
+                <img src={imageUrl} alt="imagem do prato" />
                 <p>{data.name}</p>
                 {
                     isMobile > WINDOW_MOBILE_WIDTH ? <h5>{data.description}</h5> : null

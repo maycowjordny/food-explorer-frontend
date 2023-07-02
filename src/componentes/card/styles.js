@@ -72,6 +72,7 @@ section{
     img{
         width: 8.8rem;
         height:8.8rem ;
+        border-radius:50%;
     }
 
     #add-button{

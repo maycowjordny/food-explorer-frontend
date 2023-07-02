@@ -21,7 +21,8 @@ export function PayOut() {
 
     useEffect(() => {
         async function fetchOrder() {
-            const response = await api.get("/orders")
+            const orderId = localStorage.getItem("orderId")
+            const response = await api.get(`/orders/${orderId}`)
             setOrder(response.data)
         }
 
