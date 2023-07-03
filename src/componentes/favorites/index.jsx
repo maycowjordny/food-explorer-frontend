@@ -7,11 +7,8 @@ export function Favorites({ data, onDelete, ...rest }) {
     const imageUrl = data.image ? `${api.defaults.baseURL}/image/${data.image}` : dishPlaceholder;
 
     async function handleRemoveFavoriteDish() {
-        if (confirm("Deseja remover esse prato dos favoritos?")) {
-            onDelete(data.id)
-            await api.delete(`/favorites${data.id}`)
-        }
-
+        onDelete(data.id)
+        await api.delete(`/favorites${data.id}`)
     }
     return (
         <Container {...rest}>

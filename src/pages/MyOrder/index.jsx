@@ -13,6 +13,7 @@ export function MyOrder() {
     const isMobile = Resize()
     const [orders, setOrders] = useState([]);
 
+
     useEffect(() => {
         async function FecthOrders() {
             const orderId = localStorage.getItem("orderId")
@@ -21,6 +22,7 @@ export function MyOrder() {
         }
         FecthOrders()
     }, [])
+
 
     return (
         <Container>

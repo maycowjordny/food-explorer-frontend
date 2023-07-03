@@ -4,10 +4,23 @@ import { WINDOW_MOBILE_WIDTH } from "../../utils/constants";
 import { Resize } from "../../utils/index";
 import dishPlaceholder from "../../assets/dish.png"
 import { api } from "../../service/api";
-
+import { useState, useEffect } from "react";
 export function Order({ data, ...rest }) {
     const isMobile = Resize()
 
+    async function handleRemoveDish(orderId, dishId) {
+        try {
+            await api.delete(`/orders/${orderId}`, {
+                data: {
+                    dishes: [{ id: dishId }]
+                }
+            });
+            alert("Prato removido com sucesso!")
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <Container {...rest}>
@@ -29,7 +42,7 @@ export function Order({ data, ...rest }) {
                                     </div>
                             }
 
-                            <ButtonSvg title="Excluir" id="button-delete" />
+                            <ButtonSvg title="Excluir" id="button-delete" onClick={() => handleRemoveDish(data.id, dish.id)} />
                         </div>
                     </div>
                 ))
