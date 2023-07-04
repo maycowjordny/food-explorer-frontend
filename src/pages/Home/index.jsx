@@ -35,7 +35,6 @@ export function Home() {
         FetchDishes()
     }, [search])
 
-
     return (
         <Container>
             <Header handleCallback={handleCallback} />

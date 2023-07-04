@@ -10,34 +10,14 @@ import { useState } from "react";
 import { api } from "../../service/api";
 import { Link } from "react-router-dom";
 import dishPlaceholder from "../../assets/dish.png"
+import { useEffect } from "react";
 
 export function Card({ data, ...rest }) {
-
     const isAdm = IsAdm()
     const isMobile = Resize();
     const [count, setCount] = useState(1)
+
     const [isFavorite, setIsFavorite] = useState(data.is_favorite)
-
-    async function createOrder(id) {
-        try {
-            const order = {
-                dishes: [
-                    {
-                        id,
-                        quantity: count
-                    }
-
-                ]
-            }
-            const response = await api.post("/orders", order)
-            alert("Prato adicionado ao seu pedido")
-
-            const orderId = response.data.order_id
-            localStorage.setItem("orderId", orderId)
-        } catch (error) {
-            alert("Não foi possível adicionar o prato ao seu pedido. Por favor, tente novamente mais tarde.");
-        }
-    }
 
     async function handleAddFavorite(id) {
         await api.post("/favorites", { dish_id: id })
@@ -49,6 +29,28 @@ export function Card({ data, ...rest }) {
         setIsFavorite(false)
     }
 
+    async function createOrder(id) {
+        try {
+            const order = {
+                dishes: [
+                    {
+                        id,
+                        quantity: count
+                    }
+
+                ]
+
+            }
+            const response = await api.post("/orders", order)
+            alert("Prato adicionado ao seu pedido")
+            const orderId = response.data.order_id
+            localStorage.setItem("orderId", orderId)
+
+        } catch (error) {
+            alert("Não foi possível adicionar o prato ao seu pedido. Por favor, tente novamente mais tarde.");
+        }
+    }
+
     const imageUrl = data.image ? `${api.defaults.baseURL}/image/${data.image}` : dishPlaceholder;
     return (
         <Container {...rest}>
@@ -57,7 +59,8 @@ export function Card({ data, ...rest }) {
                     isAdm ?
                         <Link to={`/dish/${data.id}`}><ButtonSvg icon={FiEdit} /></Link>
                         :
-                        <ButtonSvg icon={isFavorite ? FaHeart : FiHeart} onClick={() => (isFavorite ? handleRemoveFavorite(data.id) : handleAddFavorite(data.id))} />
+                        <ButtonSvg icon={isFavorite ? FaHeart : FiHeart}
+                            onClick={() => (isFavorite ? handleRemoveFavorite(data.id) : handleAddFavorite(data.id))} />
                 }
             </div>
             <section>

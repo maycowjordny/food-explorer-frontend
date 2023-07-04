@@ -22,7 +22,7 @@ export function MyFavorites({ data, ...rest }) {
     }
 
     return (
-        <Container>
+        <Container {...rest}>
             <NewHeader />
             <main>
                 <h2>Meus Favoritos</h2>

@@ -8,7 +8,7 @@ export function Favorites({ data, onDelete, ...rest }) {
 
     async function handleRemoveFavoriteDish() {
         onDelete(data.id)
-        await api.delete(`/favorites${data.id}`)
+        await api.delete(`/favorites/${data.id}`)
     }
     return (
         <Container {...rest}>

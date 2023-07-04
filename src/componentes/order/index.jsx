@@ -4,12 +4,13 @@ import { WINDOW_MOBILE_WIDTH } from "../../utils/constants";
 import { Resize } from "../../utils/index";
 import dishPlaceholder from "../../assets/dish.png"
 import { api } from "../../service/api";
-import { useState, useEffect } from "react";
+
 export function Order({ data, ...rest }) {
     const isMobile = Resize()
-
     async function handleRemoveDish(orderId, dishId) {
         try {
+            console.log(dishId)
+
             await api.delete(`/orders/${orderId}`, {
                 data: {
                     dishes: [{ id: dishId }]
@@ -21,6 +22,7 @@ export function Order({ data, ...rest }) {
             console.error(error);
         }
     }
+
 
     return (
         <Container {...rest}>

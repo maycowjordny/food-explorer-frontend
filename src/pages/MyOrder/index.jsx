@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 export function MyOrder() {
     const isMobile = Resize()
     const [orders, setOrders] = useState([]);
-
+    const total = orders.map(order => order.dishes.length)
 
     useEffect(() => {
         async function FecthOrders() {
@@ -21,14 +21,12 @@ export function MyOrder() {
             setOrders(response.data)
         }
         FecthOrders()
-    }, [])
-
+    }, [orders])
 
     return (
         <Container>
             <NewHeader />
             <main>
-
                 <div>
                     <h2>Meu pedido </h2>
                     <div className="scroll">
@@ -43,13 +41,20 @@ export function MyOrder() {
                             }
                         </div>
                     </div>
-                    <div className="amount">
-                        {
-                            orders.map(order => (
-                                <span key={order.id}>Total: R$ {order.amount.toFixed(2)}</span>
-                            ))
-                        }
-                    </div>
+
+                    {
+                        total != 0 ?
+                            <div className="amount">
+                                {
+                                    orders.map(order => (
+                                        <span key={order.id}>Total: R$ {order.amount.toFixed(2)}</span>
+                                    ))
+                                }
+
+                            </div>
+                            :
+                            null
+                    }
                 </div>
                 <div className="box-payment">
                     {

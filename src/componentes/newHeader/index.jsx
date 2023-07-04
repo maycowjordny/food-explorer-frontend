@@ -14,6 +14,7 @@ import { WINDOW_MOBILE_WIDTH } from "../../utils/constants"
 import { useAuth } from "../../hooks/auth";
 import { useState, useEffect, } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../service/api";
 
 export function NewHeader() {
     const isMobile = Resize();
@@ -21,8 +22,10 @@ export function NewHeader() {
     const navigate = useNavigate()
     const { signOut } = useAuth()
     const [menu, setMenu] = useState(false)
+    const [dishes, setDishes] = useState(0)
+    const [orders, setOrder] = useState([])
     const [search, setSearch] = useState("")
-
+    const orderId = localStorage.getItem("orderId")
     const handleMenu = () => {
         setMenu(!menu)
     }
@@ -33,6 +36,21 @@ export function NewHeader() {
         }
 
     }, [search]);
+
+    useEffect(() => {
+
+        async function FetchOrder() {
+            const response = await api.get(`/orders/${orderId}`)
+            setOrder(response.data)
+        }
+        FetchOrder()
+    }, [orders, orderId])
+
+    useEffect(() => {
+
+        const numberOfDishes = orders.map(order => order.dishes.length)
+        setDishes(numberOfDishes)
+    }, [orders])
 
     return (
         <Container>
@@ -82,7 +100,7 @@ export function NewHeader() {
                         }
 
                         <div className="order-button">
-                            <Link to="/order"><Button icon={RiFileListLine} title="Pedidos (0)" /></Link>
+                            <Link to="/order"><Button icon={RiFileListLine} title={`Pedido (${dishes})`} /></Link>
                         </div>
 
                         <div className="logout">
@@ -123,15 +141,12 @@ export function NewHeader() {
                                         </div>
                                     </Link>
                             }
-
-                            <Link to="/order">
-                                <div className="order">
-                                    <a>
-                                        <ButtonSvg icon={RiFileListLine} />
-                                        <span>{0}</span>
-                                    </a>
-                                </div>
-                            </Link>
+                            <div className="order">
+                                <Link to="/order">
+                                    <ButtonSvg icon={RiFileListLine} />
+                                    <span>{dishes}</span>
+                                </Link>
+                            </div>
                         </MobileModel>
 
 
