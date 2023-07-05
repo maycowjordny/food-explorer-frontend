@@ -4,7 +4,7 @@ import logoImg from "../../assets/logo.png"
 import { BsList } from "react-icons/bs"
 import { Resize, IsAdm } from "../../utils/index";
 import { RiFileListLine } from "react-icons/ri"
-import { FiSearch, FiUser, FiX } from "react-icons/fi"
+import { FiSearch, FiUser, FiX, FiHeart } from "react-icons/fi"
 import { RxExit } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { ButtonSvg } from "../buttonSvg"
@@ -55,7 +55,6 @@ export function Header({ handleCallback }) {
 
     return (
         <Container>
-
             {
                 isMobile > WINDOW_MOBILE_WIDTH ?
 
@@ -109,6 +108,10 @@ export function Header({ handleCallback }) {
 
                             }
                         </div>
+                        <div className="favorites">
+                            <Link to="/favorites"> <ButtonSvg icon={FiHeart} /></Link>
+                        </div>
+
 
                         <div className="logout">
                             <ButtonSvg icon={RxExit} onClick={signOut} />
@@ -180,6 +183,8 @@ export function Header({ handleCallback }) {
                                                 :
                                                 <>
                                                     <Link to="/profile"><ButtonSvg title="Profile" className="buttons-menu" /></Link>
+                                                    <div id="line"></div>
+                                                    <Link to="/favorites"> <ButtonSvg title="Favoritos" /></Link>
                                                     <div id="line"></div>
                                                     <Link to="/history"> <ButtonSvg title="Histórico de pedidos" className="buttons-menu" /></Link>
                                                     <div id="line"></div>

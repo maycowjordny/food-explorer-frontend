@@ -174,6 +174,8 @@ export function NewHeader() {
                                                 <>
                                                     <Link to="/profile"><ButtonSvg title="Profile" className="buttons-menu" /></Link>
                                                     <div id="line"></div>
+                                                    <Link to="/favorites"> <ButtonSvg title="Favoritos" /></Link>
+                                                    <div id="line"></div>
                                                     <Link to="/history"> <ButtonSvg title="Histórico de pedidos" className="buttons-menu" /></Link>
                                                     <div id="line"></div>
                                                     <Link to="/"> <ButtonSvg title="Sair" className="buttons-menu" onClick={signOut} /></Link>

@@ -8,6 +8,8 @@ import { Order } from "../../componentes/order";
 import { Resize } from "../../utils/index";
 import { api } from "../../service/api";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 
 export function MyOrder() {
     const isMobile = Resize()
@@ -71,7 +73,7 @@ export function MyOrder() {
                 {
                     isMobile < WINDOW_MOBILE_WIDTH ?
                         <div className="button-wrapper">
-                            <Button title="Avançar" id="button-advance" />
+                            <Link to="/payment"><Button title="Avançar" id="button-advance" /></Link>
                         </div>
                         :
                         null

@@ -12,8 +12,8 @@ import { api } from "../../service/api";
 export function PayOut() {
 
     const [order, setOrder] = useState([])
-
     const [payment, setPayment] = useState(false);
+    const [status, setStatus] = useState(null)
 
     const handlePayment = () => {
         setPayment(!payment)
@@ -50,30 +50,80 @@ export function PayOut() {
                     className={payment ? "active" : ""}
                 />
             </div>
+
             {
-                payment ?
-                    <img src={QRCODE} alt="QRCODE" />
+                !status ?
+                    < div className="handleProcess">
+                        {
+                            payment ?
+
+                                <img src={QRCODE} alt="QRCODE" />
+                                :
+                                <div id="boxPayment">
+                                    <div id="inputs-Wrapper">
+                                        <label htmlFor="">Número do Cartão</label>
+                                        <Input type="number" placeholder="0000 0000 0000 0000" />
+                                    </div>
+
+                                    <div id="inputPayments">
+                                        <div id="inputs-Wrapper">
+                                            <label htmlFor="">Validade</label>
+                                            <Input type="number" placeholder="04/25" />
+                                        </div>
+
+                                        <div id="inputs-Wrapper">
+                                            <label htmlFor="">CVC</label>
+                                            <Input type="number" placeholder="000" />
+                                        </div>
+                                    </div>
+                                    <Button title="Finalizar pagamento" icon={RiFileListLine} />
+                                </div>
+                        }
+                    </div>
                     :
-                    <div id="boxPayment">
-                        <div id="inputs-Wrapper">
-                            <label htmlFor="">Número do Cartão</label>
-                            <Input type="number" placeholder="0000 0000 0000 0000" />
-                        </div>
+                    <div className="paymentProcess">
+                        {
+                            status == "Pendente" ?
 
-                        <div id="inputPayments">
-                            <div id="inputs-Wrapper">
-                                <label htmlFor="">Validade</label>
-                                <Input type="number" placeholder="04/25" />
-                            </div>
+                                <div className="process">
+                                    <RiTimer2Line />
+                                    <p>Aguardando pagamento no caixa</p>
+                                </div>
+                                : null
+                        }
 
-                            <div id="inputs-Wrapper">
-                                <label htmlFor="">CVC</label>
-                                <Input type="number" placeholder="000" />
-                            </div>
-                        </div>
-                        <Button title="Finalizar pagamento" icon={RiFileListLine} />
+                        {
+                            status == "Aprovado" ?
+
+                                <div className="process">
+                                    <GoVerified />
+                                    <p>Pagamento aprovado!</p>
+                                </div>
+                                : null
+                        }
+
+                        {
+                            status == "Pedido Entregue" ?
+
+                                <div className="process">
+                                    <ImSpoonKnife />
+                                    <p>Pedido entregue!</p>
+                                </div>
+                                : null
+                        }
+
+                        {
+                            status == "Cancelado" ?
+
+                                <div className="process">
+                                    <ImCancelCircle />
+                                    <p>Pedido cancelado!</p>
+                                </div>
+                                : null
+                        }
+
                     </div>
             }
-        </Container>
+        </Container >
     )
 }
