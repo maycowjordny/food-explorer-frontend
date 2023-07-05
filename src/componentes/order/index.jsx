@@ -16,7 +16,6 @@ export function Order({ data, ...rest }) {
                     dishes: [{ id: dishId }]
                 }
             });
-            alert("Prato removido com sucesso!")
 
         } catch (error) {
             console.error(error);

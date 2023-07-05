@@ -4,20 +4,60 @@ import { FaRegCreditCard, FaQrcode } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { RiFileListLine, RiTimer2Line } from "react-icons/ri";
 import { ImSpoonKnife, ImCancelCircle } from "react-icons/im";
-import PIX from "../../assets/PIX.png";
+import { GoVerified } from "react-icons/go";
 import QRCODE from "../../assets/QRCODE.png";
 import { Button } from "../button";
 import { api } from "../../service/api";
 
 export function PayOut() {
 
-    const [order, setOrder] = useState([])
+    const [orders, setOrder] = useState([])
     const [payment, setPayment] = useState(false);
     const [status, setStatus] = useState(null)
+    const [paymentMethod, setPaymentMethod] = useState();
+    const [disableButtons, setDisableButtons] = useState(false)
+
+    const [numberCard, setNumberCard] = useState(false)
+    const [segurityCode, setSegurityCode] = useState(false)
+    const [validate, setValidate] = useState(false)
 
     const handlePayment = () => {
         setPayment(!payment)
     }
+
+    useEffect(() => {
+        const localStorageStatus = localStorage.getItem('@OrderStatus')
+        if (localStorageStatus) {
+            setStatus(localStorageStatus)
+        }
+    }, [orders]);
+
+    const hanldeFinalizePayment = () => {
+        if (!numberCard) {
+            alert("Coloque o número do seu Cartão")
+            return
+        }
+
+        if (!validate) {
+            alert("Coloque o número da validade do seu Cartão")
+            return
+        }
+
+        if (!segurityCode) {
+            alert("Coloque o código de segurança do seu Cartão")
+            return
+        }
+
+        const newStatus = orders.map(order => order.status).toString()
+        setStatus(newStatus)
+        localStorage.setItem('@OrderStatus', newStatus)
+    }
+
+    const finalizePaymentPix = () => {
+        const newStatus = orders.map(order => order.status).toString()
+        setStatus(newStatus)
+        localStorage.setItem('@OrderStatus', newStatus)
+    };
 
     useEffect(() => {
         async function fetchOrder() {
@@ -25,10 +65,47 @@ export function PayOut() {
             const response = await api.get(`/orders/${orderId}`)
             setOrder(response.data)
         }
-
         fetchOrder()
-
     }, [])
+
+    const handlePaymentMethod = (method) => {
+        setPaymentMethod(method);
+
+        if (method === "Pix") {
+            setTimeout(() => {
+                finalizePaymentPix();
+            }, 5000);
+        }
+
+        api.put(`/orders/${orderId}`, { payment: method });
+    };
+
+    const handleClick = (method) => {
+        if (method === paymentMethod) {
+            return;
+        }
+
+        handlePayment();
+        handlePaymentMethod(method);
+    };
+
+    useEffect(() => {
+        if (status === "Pendente" || status === "Aprovado" || status === "Pedido Entregue" || status === "Cancelado") {
+            setDisableButtons(true);
+        } else {
+            setDisableButtons(false);
+        }
+    }, [status]);
+
+    useEffect(() => {
+        function FetchStatus() {
+            const currentStatus = orders.map(order => order.status).toString()
+            if (currentStatus !== "Pendente") {
+                setStatus(currentStatus)
+            }
+        }
+        FetchStatus()
+    }, [orders])
 
     return (
         <Container>
@@ -37,46 +114,46 @@ export function PayOut() {
                     title="PIX"
                     id="button-pix"
                     icon={FaQrcode}
-                    onClick={handlePayment}
-                    className={!payment ? "active" : ""}
-
+                    onClick={() => handleClick("Pix")}
+                    className={!payment ? " " : "active"}
+                    disabled={disableButtons}
                 />
 
                 <Button
                     icon={FaRegCreditCard}
                     title="Crédito"
                     id="button-credit"
-                    onClick={handlePayment}
-                    className={payment ? "active" : ""}
+                    onClick={() => handleClick("Cartão de crédito")}
+                    className={payment ? " " : "active"}
+                    disabled={disableButtons}
                 />
             </div>
 
             {
                 !status ?
-                    < div className="handleProcess">
+                    <div className="PaymentProcess">
                         {
                             payment ?
-
-                                <img src={QRCODE} alt="QRCODE" />
+                                <img src={QRCODE} alt="qrcode" />
                                 :
                                 <div id="boxPayment">
                                     <div id="inputs-Wrapper">
                                         <label htmlFor="">Número do Cartão</label>
-                                        <Input type="number" placeholder="0000 0000 0000 0000" />
+                                        <Input type="number" placeholder="0000 0000 0000 0000" onChange={e => setNumberCard(e.target.value)} />
                                     </div>
 
                                     <div id="inputPayments">
                                         <div id="inputs-Wrapper">
                                             <label htmlFor="">Validade</label>
-                                            <Input type="number" placeholder="04/25" />
+                                            <Input type="number" placeholder="04/25" onChange={e => setValidate(e.target.value)} />
                                         </div>
 
                                         <div id="inputs-Wrapper">
                                             <label htmlFor="">CVC</label>
-                                            <Input type="number" placeholder="000" />
+                                            <Input type="number" placeholder="000" onChange={e => setSegurityCode(e.target.value)} />
                                         </div>
                                     </div>
-                                    <Button title="Finalizar pagamento" icon={RiFileListLine} />
+                                    <Button title="Finalizar pagamento" icon={RiFileListLine} onClick={() => hanldeFinalizePayment()} />
                                 </div>
                         }
                     </div>
@@ -124,6 +201,7 @@ export function PayOut() {
 
                     </div>
             }
+
         </Container >
     )
 }

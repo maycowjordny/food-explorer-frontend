@@ -73,11 +73,17 @@ export function MyOrder() {
                 {
                     isMobile < WINDOW_MOBILE_WIDTH ?
                         <div className="button-wrapper">
-                            <Link to="/payment"><Button title="Avançar" id="button-advance" /></Link>
+                            {
+                                total != 0 ?
+                                    <Link to="/payment"><Button title="Avançar" id="button-advance" /></Link>
+                                    :
+                                    null
+                            }
                         </div>
                         :
                         null
                 }
+
             </main>
             <Footer />
         </Container>
