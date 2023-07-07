@@ -4,23 +4,34 @@ import { Footer } from "../../componentes/footer"
 import { CardDetails } from "../../componentes/cardDetails";
 import { ButtonSvg } from "../../componentes/buttonSvg";
 import { RiArrowLeftSLine } from "react-icons/ri";
+import { useState, useEffect } from "react";
+import { api } from "../../service/api";
+import { Link, useParams } from "react-router-dom";
 
-export function Details() {
+export function Details({ data, ...rest }) {
+
+    const [dishes, setdishes] = useState([])
+    const { id } = useParams()
+
+    useEffect(() => {
+        async function FetchDishes() {
+            const response = await api.get(`dishes/${id}`)
+            setdishes(response.data)
+
+        }
+        FetchDishes()
+    }, [])
+
     return (
-        <Container>
+        <Container {...rest}>
             <Header />
-            <main>
+            <Link to="/">
                 <div id="button-back">
                     <ButtonSvg icon={RiArrowLeftSLine} title="voltar" />
                 </div>
-
-                <CardDetails data={
-                    {
-                        name: "Salada Ravanello",
-                        description: "Rabanetes folhas verdes e molho agridoce salpicados com gergelim",
-                        quantity: "01",
-                    }
-                } />
+            </Link>
+            <main>
+                <CardDetails data={dishes} />
             </main>
             <Footer />
         </Container>

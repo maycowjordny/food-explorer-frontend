@@ -29,6 +29,7 @@ main{
             margin:1.6rem 0;
             width: 26.4rem;
             height:26.4rem;
+            border-radius: 50%;
         }
 
 
@@ -60,6 +61,24 @@ main{
     justify-content: center;
     margin-bottom:4.8rem;
 }
+
+  
+input[type=number]::-webkit-inner-spin-button { 
+        -webkit-appearance: none;
+    }
+
+      input[type=number] { 
+        -moz-appearance: textfield;
+        appearance: textfield;
+      }
+    
+      #input-number{
+        background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+        width: 4.5rem;
+        cursor: pointer;
+        
+      }
+
 
 #buttons-wrapper{
     display: flex;

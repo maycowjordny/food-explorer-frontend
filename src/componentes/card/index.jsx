@@ -63,16 +63,17 @@ export function Card({ data, ...rest }) {
                             onClick={() => (isFavorite ? handleRemoveFavorite(data.id) : handleAddFavorite(data.id))} />
                 }
             </div>
-            <section>
-                <img src={imageUrl} alt="imagem do prato" />
-                <p>{data.name}</p>
-                {
-                    isMobile > WINDOW_MOBILE_WIDTH ? <h5>{data.description}</h5> : null
+            <Link to={`/details/${data.id}`}>
+                <section>
+                    <img src={imageUrl} alt="imagem do prato" />
+                    <p>{data.name}</p>
+                    {
+                        isMobile > WINDOW_MOBILE_WIDTH ? <h5>{data.description}</h5> : null
 
-                }
-                <span>R${data.price.toFixed(2)}</span>
-            </section>
-
+                    }
+                    <span>R${data.price.toFixed(2)}</span>
+                </section>
+            </Link>
             <div id="buttons-wrapper">
 
                 <div id="quantity">

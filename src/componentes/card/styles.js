@@ -17,6 +17,7 @@ section{
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
+    color: ${({ theme }) => theme.COLORS.WHITE};
 }
 
 #favorite{

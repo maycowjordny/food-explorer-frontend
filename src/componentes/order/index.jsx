@@ -9,8 +9,6 @@ export function Order({ data, ...rest }) {
     const isMobile = Resize()
     async function handleRemoveDish(orderId, dishId) {
         try {
-            console.log(dishId)
-
             await api.delete(`/orders/${orderId}`, {
                 data: {
                     dishes: [{ id: dishId }]
