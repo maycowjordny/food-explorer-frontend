@@ -100,7 +100,7 @@ export function NewHeader() {
                         }
 
                         <div className="order-button">
-                            <Link to="/order"><Button icon={RiFileListLine} title={`Pedido (${dishes})`} /></Link>
+                            <Link to="/order"><Button icon={RiFileListLine} title={`Pedido (${String(dishes).padStart(2, "0")})`} /></Link>
                         </div>
 
                         <div className="logout">

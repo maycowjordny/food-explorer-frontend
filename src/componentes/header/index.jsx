@@ -96,7 +96,7 @@ export function Header({ handleCallback }) {
                             {
                                 isAdm ? <Button title="Novo prato" />
                                     :
-                                    <Link to="/order"> <Button icon={RiFileListLine} title={`Pedido (${dishes})`} /> </Link>
+                                    <Link to="/order"> <Button icon={RiFileListLine} title={`Pedido (${String(dishes).padStart(2, "0")})`} /> </Link>
                             }
                         </div>
 

@@ -12,11 +12,10 @@ import { api } from "../../service/api";
 export function PayOut() {
 
     const [orders, setOrder] = useState([])
-    const [payment, setPayment] = useState(false);
+    const [payment, setPayment] = useState(false)
     const [status, setStatus] = useState(null)
-    const [paymentMethod, setPaymentMethod] = useState();
+    const [paymentMethod, setPaymentMethod] = useState()
     const [disableButtons, setDisableButtons] = useState(false)
-
     const [numberCard, setNumberCard] = useState(false)
     const [segurityCode, setSegurityCode] = useState(false)
     const [validate, setValidate] = useState(false)
@@ -68,17 +67,15 @@ export function PayOut() {
         fetchOrder()
     }, [])
 
-    const handlePaymentMethod = (method) => {
-        setPaymentMethod(method);
 
+    const handlePaymentMethod = (method) => {
         if (method === "Pix") {
             setTimeout(() => {
                 finalizePaymentPix();
-            }, 5000);
+            }, 4000);
         }
-
         api.put(`/orders/${orderId}`, { payment: method });
-    };
+    }
 
     const handleClick = (method) => {
         if (method === paymentMethod) {
@@ -106,6 +103,7 @@ export function PayOut() {
         }
         FetchStatus()
     }, [orders])
+
 
     return (
         <Container>
