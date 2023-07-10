@@ -1,18 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+display: flex;
+gap: 1.2rem;
+font-size: 1rem;
+margin-bottom: 1.8rem;
+font-family: 'Poppins';
+font-weight: 500;
 
-    a{
-        color: ${({ theme }) => theme.COLORS.WHITE};
-        display: flex;
-        align-items: center;
-        font-size: 1rem;
-        font-family: 'Poppins';
-        font-weight: 500;
-        gap: 1.2rem;
-        margin-bottom: 1.8rem;
-    }
-    
     >div{
         h1{
             white-space: nowrap;
@@ -25,8 +20,8 @@ export const Container = styled.div`
     }
 
     img{
-        width:7.2rem;
-        height: 7.2rem;
+        width:7rem;
+        height: 7rem;
         border-radius: 50%;
     }
 

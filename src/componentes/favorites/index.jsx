@@ -16,15 +16,15 @@ export function Favorites({ data, onDelete, ...rest }) {
 
             <Link to={`/details/${data.id}`}>
                 <img src={imageUrl} alt="Prato" />
-                <div>
-                    <h1>{data.name}</h1>
-                    <Button
-                        title="Remover"
-                        id="remove-button"
-                        onClick={handleRemoveFavoriteDish}
-                    />
-                </div>
             </Link>
+            <div>
+                <h1>{data.name}</h1>
+                <Button
+                    title="Remover"
+                    id="remove-button"
+                    onClick={handleRemoveFavoriteDish}
+                />
+            </div>
 
         </Container>
     )

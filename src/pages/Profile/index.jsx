@@ -12,26 +12,28 @@ import { api } from "../../service/api";
 
 export function Profile() {
     const { user, updateProfile } = useAuth()
-
     const [name, setName] = useState(user.name)
     const [email, setEmail] = useState(user.email)
-    const [passwordOld, setPasswordOld] = useState()
-    const [newPassword, setNewpassord] = useState()
+    const [passwordOld, setPasswordOld] = useState("")
+    const [passwordNew, setPasswordNew] = useState("")
 
     const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : ProfileAvatarPlaceholder;
     const [avatar, setAvatar] = useState(avatarUrl)
     const [avatarFile, setAvatarFile] = useState(null)
 
+
     async function handleUpdate() {
-        const user = {
+        const updated = {
             name,
             email,
-            password: newPassword,
+            password: passwordNew,
             old_password: passwordOld,
         }
-        await updateProfile({ user, avatarFile })
+
+        const userUpdated = Object.assign(user, updated)
+
+        await updateProfile({ user: userUpdated, avatarFile })
     }
-    console.log(user)
 
     function handleChangeAvatar(event) {
         const file = event.target.files[0]
@@ -40,7 +42,6 @@ export function Profile() {
         const imagePreview = URL.createObjectURL(file)
         setAvatar(imagePreview)
     }
-
     return (
         <Container>
             <header>
@@ -86,7 +87,7 @@ export function Profile() {
                     icon={FiLock}
                     type="password"
                     placeholder="Nova senha"
-                    onChange={e => setNewpassord(e.target.value)}
+                    onChange={e => setPasswordNew(e.target.value)}
                 />
 
                 <Button title="Salvar"

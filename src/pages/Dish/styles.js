@@ -130,7 +130,7 @@ min-height: 100vh;
       flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
-      height: 4.8rem;
+      height: 48%;
       padding: 0.8rem;
       border-radius: 0.8rem;
       background-color:${({ theme }) => theme.COLORS.BACKGROUND_INPUT_TAGS} ;
