@@ -186,8 +186,7 @@ justify-content: space-around;
     }
 
    .order-button{
-   width: 21.6rem;
-
+    
    button{
     white-space:nowrap ;
     padding: 1.2rem 3.2rem;
@@ -197,6 +196,5 @@ justify-content: space-around;
    .search{
     width:100%;
    }
-
 
 `;

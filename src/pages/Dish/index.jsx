@@ -9,19 +9,26 @@ import { Button } from "../../componentes/button";
 import { TextArea } from "../../componentes/textArea"
 import { useState, useEffect } from "react";
 import { api } from "../../service/api";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export function Dish() {
     const { id } = useParams();
+    const [isToEdit, setIsToEdit] = useState("")
+
+    const [dish, setDish] = useState([])
+
     const [nameDish, setNameDish] = useState("")
     const [price, setPrice] = useState("")
-    const [isToEdit, setIsToEdit] = useState("")
+    const [description, setDescription] = useState("")
+    const navigate = useNavigate()
 
     const [categories, setCategories] = useState([])
     const [newCategories, setNewCategories] = useState({ id: 0 })
-
     const [ingredients, setIngredients] = useState([])
     const [newIngredients, setNewIngredients] = useState("")
+
+    const [image, setImage] = useState()
+    const [imageFile, setImageFile] = useState(null)
 
     useEffect(() => {
         async function FetchCategories() {
@@ -49,13 +56,22 @@ export function Dish() {
     }, [id])
 
     useEffect(() => {
-        if (!nameDish.id || !categories.length) {
+        if (!dish.id || !categories.length) {
             return
         }
 
         setNewCategories(categories.filter(category => { return category.id == nameDish.category_id })[0])
+        setName(dish.name)
+        setDescription(dish.description)
+        setPrice(dish.price)
+        setNewCategories(categories.filter(category => { return category.id == dish.category_id })[0])
 
-    }, [categories, nameDish])
+        const ingredientsName = dish.ingredients.map(ingredient => {
+            return ingredient.name
+        })
+        setIngredients(ingredientsName)
+        setImageFile(dish.image)
+    }, [categories, dish])
 
     const handleAddIngredient = () => {
         setIngredients(prevState => [...prevState, newIngredients])
@@ -64,6 +80,77 @@ export function Dish() {
 
     const handleRemoveIngredient = (deleted) => {
         setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
+    }
+
+    function handleChangeImage(event) {
+        const file = event.target.files[0]
+        setImageFile(file)
+        const imagePreview = URL.createObjectURL(file)
+        setImage(imagePreview)
+    }
+
+    async function handleNewDish() {
+        if (!nameDish) {
+            return alert("Você esqueceu de adicionar um nome para seu prato.")
+        }
+
+        if (!categories) {
+            return alert("Você esqueceu de adicionar uma categoria para seu prato.")
+        }
+
+        if (!price) {
+            return alert("Você esqueceu de adicionar um preço para seu prato.")
+        }
+
+        if (newIngredients) {
+            return alert("Você esqueceu de adicionar os ingredientes do seu prato.")
+        }
+        let body = new FormData();
+
+        body.append("image", imageFile)
+        body.append("name", nameDish)
+        body.append("description", description)
+        body.append("category", parseInt(newCategories.id ? newCategories.id : newCategories))
+        body.append("price", price)
+        body.append("ingredients[]", ingredients)
+
+        if (isToEdit) {
+            await api.put(`/dishes/${id}`, body, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+
+            alert("Prato atualizado com sucesso!");
+            navigate("/")
+
+        } else {
+            await api.post("/dishes", body, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+
+            setIngredients([])
+            setImageFile(null)
+            setNameDish('')
+            setDescription('')
+            setPrice('')
+            setNewCategories({ id: 0 })
+
+            alert("Prato criado com sucesso!");
+        }
+
+    }
+
+    async function handleDeleteDish() {
+        if (confirm("Deseja realmente deletar este prato?")) {
+            await api.delete(`dishes/${id}`)
+            alert("Prato deletado com sucesso!");
+            navigate("/")
+        } else {
+            return
+        }
     }
 
     return (
@@ -85,8 +172,15 @@ export function Dish() {
                     <div id="info-dish">
                         <label htmlFor="file">Imagem do prato</label>
                         <div id="file">
-                            <label htmlFor="arquivo"> <RiUpload2Fill /> Selecione imagem </label>
-                            <input type="file" name="arquivo" id="arquivo" />
+                            <label htmlFor="arquivo">
+                                <RiUpload2Fill /> Selecione imagem
+                            </label>
+                            <input
+                                type="file"
+                                name="arquivo"
+                                id="arquivo"
+                                onChange={handleChangeImage}
+                            />
                         </div>
                     </div>
                     <div id="name-dish">
@@ -154,6 +248,8 @@ export function Dish() {
                         <label htmlFor="description">Descrição</label>
                         <TextArea
                             placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                            onChange={(e) => setDescription(e.target.value)}
+                            value={description}
                         />
                     </div>
                     {
@@ -162,16 +258,19 @@ export function Dish() {
                                 < Button
                                     id="buttonDelete"
                                     title="Excluir prato"
+                                    onClick={handleDeleteDish}
                                 />
                                 < Button
                                     id="button-save"
                                     title="Salvar alterações"
+                                    onClick={handleNewDish}
                                 />
                             </div>
                             :
                             < Button
                                 id="button-save"
                                 title="Salvar alterações"
+                                onClick={handleNewDish}
                             />
                     }
                 </div>

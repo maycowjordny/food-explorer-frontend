@@ -29,7 +29,6 @@ export function AppRoutes() {
             <Route path="/order" element={<MyOrder />} />
             <Route path="/order/:id" element={<MyOrder />} />
 
-            <Route path="/details" element={<Details />} />
             <Route path="/details/:id" element={<Details />} />
         </Routes>
     )

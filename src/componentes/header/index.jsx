@@ -109,7 +109,11 @@ export function Header({ handleCallback }) {
                             }
                         </div>
                         <div className="favorites">
-                            <Link to="/favorites"> <ButtonSvg icon={FiHeart} /></Link>
+                            {
+                                isAdm ? null
+                                    :
+                                    <Link to="/favorites"> <ButtonSvg icon={FiHeart} /></Link>
+                            }
                         </div>
 
 
