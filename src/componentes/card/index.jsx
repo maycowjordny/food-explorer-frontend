@@ -10,7 +10,6 @@ import { useState } from "react";
 import { api } from "../../service/api";
 import { Link } from "react-router-dom";
 import dishPlaceholder from "../../assets/dish.png"
-import { useEffect } from "react";
 
 export function Card({ data, ...rest }) {
     const isAdm = IsAdm()

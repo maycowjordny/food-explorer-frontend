@@ -15,6 +15,7 @@ export function Dish() {
     const { id } = useParams();
     const [isToEdit, setIsToEdit] = useState("")
 
+
     const [dish, setDish] = useState([])
 
     const [nameDish, setNameDish] = useState("")
@@ -29,6 +30,14 @@ export function Dish() {
 
     const [image, setImage] = useState()
     const [imageFile, setImageFile] = useState(null)
+
+    useEffect(() => {
+        if (id) {
+            setIsToEdit(true)
+        } else {
+            setIsToEdit(false)
+        }
+    }, [id])
 
     useEffect(() => {
         async function FetchCategories() {
@@ -47,24 +56,16 @@ export function Dish() {
         }
     }, [isToEdit])
 
-    useEffect(() => {
-        if (id) {
-            setIsToEdit(true)
-        } else {
-            setIsToEdit(false)
-        }
-    }, [id])
 
     useEffect(() => {
         if (!dish.id || !categories.length) {
             return
         }
 
-        setNewCategories(categories.filter(category => { return category.id == nameDish.category_id })[0])
-        setName(dish.name)
+        setNameDish(dish.name)
         setDescription(dish.description)
         setPrice(dish.price)
-        setNewCategories(categories.filter(category => { return category.id == dish.category_id })[0])
+        setNewCategories(categories.filter(category => { return category.id == nameDish.category_id })[0])
 
         const ingredientsName = dish.ingredients.map(ingredient => {
             return ingredient.name
@@ -73,6 +74,12 @@ export function Dish() {
         setImageFile(dish.image)
     }, [categories, dish])
 
+    function handleChangeImage(event) {
+        const file = event.target.files[0]
+        setImageFile(file)
+        const imagePreview = URL.createObjectURL(file)
+        setImage(imagePreview)
+    }
     const handleAddIngredient = () => {
         setIngredients(prevState => [...prevState, newIngredients])
         setNewIngredients("")
@@ -82,12 +89,6 @@ export function Dish() {
         setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
     }
 
-    function handleChangeImage(event) {
-        const file = event.target.files[0]
-        setImageFile(file)
-        const imagePreview = URL.createObjectURL(file)
-        setImage(imagePreview)
-    }
 
     async function handleNewDish() {
         if (!nameDish) {
@@ -105,10 +106,11 @@ export function Dish() {
         if (newIngredients) {
             return alert("Você esqueceu de adicionar os ingredientes do seu prato.")
         }
+
         let body = new FormData();
 
         body.append("image", imageFile)
-        body.append("name", nameDish)
+        body.append("nameDish", nameDish)
         body.append("description", description)
         body.append("category", parseInt(newCategories.id ? newCategories.id : newCategories))
         body.append("price", price)
@@ -188,7 +190,7 @@ export function Dish() {
                         <Input
                             type="name"
                             placeholder="Ex.: Salada Ceasar"
-                            onChange={(e) => setNameDish(e.target.value)}
+                            onChange={e => setNameDish(e.target.value)}
                         />
                     </div>
                     <div id="category">
@@ -239,7 +241,7 @@ export function Dish() {
                             type="number"
                             placeholder="R$ 00,00"
                             value={price}
-                            onChange={(e) => setPrice(e.target.value)}
+                            onChange={e => setPrice(e.target.value)}
                         />
                     </div>
                 </div>
@@ -247,9 +249,9 @@ export function Dish() {
                     <div id="inputTextArea">
                         <label htmlFor="description">Descrição</label>
                         <TextArea
-                            placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-                            onChange={(e) => setDescription(e.target.value)}
                             value={description}
+                            placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                            onChange={e => setDescription(e.target.value)}
                         />
                     </div>
                     {

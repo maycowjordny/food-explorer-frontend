@@ -10,12 +10,12 @@ import { useState } from "react";
 import { Input } from "../Input";
 import dishPlaceholder from "../../assets/dish.png"
 import { api } from "../../service/api";
+import { useEffect } from "react";
 
 export function CardDetails({ data, ...rest }) {
 
     const isAdm = IsAdm()
     const [count, setCount] = useState(1)
-
     async function createOrder(id) {
         try {
             const order = {
@@ -37,6 +37,7 @@ export function CardDetails({ data, ...rest }) {
             alert("Não foi possível adicionar o prato ao seu pedido. Por favor, tente novamente mais tarde.");
         }
     }
+
 
     const imageUrl = data.image ? `${api.defaults.baseURL}/image/${data.image}` : dishPlaceholder;
     return (
@@ -60,7 +61,11 @@ export function CardDetails({ data, ...rest }) {
                         data.ingredients &&
                         <div id="tags">
                             {
-                                data.ingredients.map(ingredient => <Tags key={ingredient.id} name={ingredient.name} />)
+                                data.ingredients.map(ingredient =>
+                                    <Tags
+                                        key={ingredient.id}
+                                        name={ingredient.name}
+                                    />)
                             }
                         </div>
                     }
