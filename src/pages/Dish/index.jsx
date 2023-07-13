@@ -9,7 +9,7 @@ import { Button } from "../../componentes/button";
 import { TextArea } from "../../componentes/textArea"
 import { useState, useEffect } from "react";
 import { api } from "../../service/api";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 export function Dish() {
     const { id } = useParams();
@@ -39,6 +39,7 @@ export function Dish() {
         }
     }, [id])
 
+
     useEffect(() => {
         async function FetchCategories() {
             const response = await api.get("/categories")
@@ -57,22 +58,7 @@ export function Dish() {
     }, [isToEdit])
 
 
-    useEffect(() => {
-        if (!dish.id || !categories.length) {
-            return
-        }
 
-        setNameDish(dish.name)
-        setDescription(dish.description)
-        setPrice(dish.price)
-        setNewCategories(categories.filter(category => { return category.id == dish.category_id })[0])
-        const ingredientsName = dish.ingredients.map(ingredient => {
-            return ingredient.name
-        })
-        setIngredients(ingredientsName)
-        setImageFile(dish.image)
-
-    }, [categories, dish])
 
     function handleChangeImage(event) {
         const file = event.target.files[0]
@@ -142,9 +128,27 @@ export function Dish() {
             setNewCategories({ id: 0 })
 
             alert("Prato criado com sucesso!");
+            navigate("/")
         }
 
     }
+
+    useEffect(() => {
+        if (!dish.id || !categories.length) {
+            return
+        }
+
+        setNameDish(dish.name)
+        setDescription(dish.description)
+        setPrice(dish.price)
+        setNewCategories(categories.filter(category => { return category.id == dish.category_id })[0])
+        const ingredientsName = dish.ingredients.map(ingredient => {
+            return ingredient.name
+        })
+        setIngredients(ingredientsName)
+        setImageFile(dish.image)
+
+    }, [categories, dish])
 
     async function handleDeleteDish() {
         if (confirm("Deseja realmente deletar este prato?")) {
@@ -161,7 +165,7 @@ export function Dish() {
             <Header />
             <main>
                 <div id="button-back">
-                    <ButtonSvg icon={RiArrowLeftSLine} title="voltar" />
+                    <Link to="/"> <ButtonSvg icon={RiArrowLeftSLine} title="voltar" /></Link>
                 </div>
                 <div className="box-title">
                     {

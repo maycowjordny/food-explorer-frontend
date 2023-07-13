@@ -5,6 +5,7 @@ import { BsList } from "react-icons/bs"
 import { Resize, IsAdm } from "../../utils/index";
 import { RiFileListLine } from "react-icons/ri"
 import { FiSearch, FiUser, FiX, FiHeart } from "react-icons/fi"
+import { RiHistoryFill } from "react-icons/ri"
 import { RxExit } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { ButtonSvg } from "../buttonSvg"
@@ -102,19 +103,18 @@ export function Header({ handleCallback }) {
 
                         <div className="profile">
                             {
-                                isAdm ? null
+                                isAdm ? <Link to="/history">   <ButtonSvg icon={RiHistoryFill} />  </Link>
                                     :
                                     <Link to="/profile">   <ButtonSvg icon={FiUser} />  </Link>
 
                             }
                         </div>
-                        <div className="favorites">
-                            {
-                                isAdm ? null
-                                    :
+                        {
+                            isAdm ? null :
+                                <div className="favorites">
                                     <Link to="/favorites"> <ButtonSvg icon={FiHeart} /></Link>
-                            }
-                        </div>
+                                </div>
+                        }
 
 
                         <div className="logout">

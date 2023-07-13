@@ -91,17 +91,24 @@ export function NewHeader() {
                             />
                         </div>
 
-                        <Link to="/favorites"> <ButtonSvg title="Meus favoritos" className="buttons-header" /></Link>
                         {
                             isAdm ?
-                                <Link to="/dish">  <ButtonSvg title="Novo prato" className="buttons-header" /></Link>
+                                <>
+                                    <Link to="/dish">  <ButtonSvg title="Novo prato" className="buttons-header" /></Link>
+                                    <Link to="/history">   <ButtonSvg title="Histórico de pedidos" className="buttons-header" /></Link>
+                                </>
                                 :
-                                <Link to="/history">   <ButtonSvg title="Histórico de pedidos" className="buttons-header" /></Link>
+                                <>
+                                    <Link to="/favorites"> <ButtonSvg title="Meus favoritos" className="buttons-header" /></Link>
+                                    <Link to="/history">   <ButtonSvg title="Histórico de pedidos" className="buttons-header" /></Link>
+                                </>
                         }
-
-                        <div className="order-button">
-                            <Link to="/order"><Button icon={RiFileListLine} title={`Pedido (${(dishes)})`} /></Link>
-                        </div>
+                        {
+                            isAdm ? null :
+                                <div className="order-button">
+                                    <Link to="/order"><Button icon={RiFileListLine} title={`Pedido (${(dishes)})`} /></Link>
+                                </div>
+                        }
 
                         <div className="logout">
                             <ButtonSvg icon={RxExit} onClick={signOut} />

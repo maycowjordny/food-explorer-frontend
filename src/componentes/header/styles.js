@@ -118,8 +118,8 @@ export const MobileModel = styled.div`
     }
 
     svg {
-        width: 30px;
-        height: 35px;
+        width: 3rem;
+        height: 3.5rem;
 }
 
 .logo div{
@@ -195,6 +195,10 @@ justify-content: space-around;
 
    .search{
     width:100%;
+   }
+
+   .hide{
+    display: none;
    }
 
 `;
