@@ -19,11 +19,9 @@ export function OrderHistory() {
             const orderId = localStorage.getItem("orderId")
             const response = await api.get(`/orders/${orderId}`)
             setOrder(response.data)
-            console.log(response.data);
         }
         FetchOrderById()
     }, [])
-    console.log(orders)
     return (
         <Container>
             <NewHeader />
@@ -152,7 +150,10 @@ export function OrderHistory() {
                                                                 <span>{order.dishes.map(dish => (`${dish.quantity} x ${dish.name}`)).join(", ")}</span>
                                                             </td>
                                                             <td>
-                                                                <span>20/05 às 18h00</span>
+                                                                <span>{new Date(order.created_at).toLocaleDateString('pt-BR')} às
+                                                                    {new Date(order.created_at).toLocaleTimeString('pt-BR',
+                                                                        { timeZone: 'America/Sao_Paulo', hour: 'numeric', minute: 'numeric' })}
+                                                                </span>
                                                             </td>
                                                         </tr>
 

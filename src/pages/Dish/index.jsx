@@ -65,13 +65,13 @@ export function Dish() {
         setNameDish(dish.name)
         setDescription(dish.description)
         setPrice(dish.price)
-        setNewCategories(categories.filter(category => { return category.id == nameDish.category_id })[0])
-
+        setNewCategories(categories.filter(category => { return category.id == dish.category_id })[0])
         const ingredientsName = dish.ingredients.map(ingredient => {
             return ingredient.name
         })
         setIngredients(ingredientsName)
         setImageFile(dish.image)
+
     }, [categories, dish])
 
     function handleChangeImage(event) {
@@ -110,9 +110,9 @@ export function Dish() {
         let body = new FormData();
 
         body.append("image", imageFile)
-        body.append("nameDish", nameDish)
+        body.append("name", nameDish)
         body.append("description", description)
-        body.append("category", parseInt(newCategories.id ? newCategories.id : newCategories))
+        body.append("category_id", parseInt(newCategories.id ? newCategories.id : newCategories))
         body.append("price", price)
         body.append("ingredients[]", ingredients)
 
@@ -131,6 +131,7 @@ export function Dish() {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
+
             })
 
             setIngredients([])
