@@ -11,6 +11,7 @@ import { Input } from "../Input";
 import dishPlaceholder from "../../assets/dish.png"
 import { api } from "../../service/api";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export function CardDetails({ data, ...rest }) {
 
@@ -84,7 +85,7 @@ export function CardDetails({ data, ...rest }) {
                         </div>
                         <div id="button-edit-add">
                             {
-                                isAdm ? <Button title="Editar prato" id="edit-button" />
+                                isAdm ? <Link to={`/dish/${data.id}`}> <Button title="Editar prato" id="edit-button" /></Link>
                                     :
                                     <Button title={`incluir ∙ R$${data.price !== undefined ? data.price.toFixed(2) : "0.00"}`} id="add-button" icon={RiFileListLine} onClick={() => createOrder(data.id)} />
                             }

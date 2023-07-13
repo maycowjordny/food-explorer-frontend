@@ -165,7 +165,7 @@ export function Dish() {
             <Header />
             <main>
                 <div id="button-back">
-                    <Link to="/"> <ButtonSvg icon={RiArrowLeftSLine} title="voltar" /></Link>
+                    <ButtonSvg icon={RiArrowLeftSLine} title="voltar" onClick={() => navigate(-1)} />
                 </div>
                 <div className="box-title">
                     {

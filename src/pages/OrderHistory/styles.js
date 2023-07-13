@@ -42,7 +42,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
     
-padding: 2.4rem 2rem;
+padding: 2.4rem 1rem;
 color:${({ theme }) => theme.COLORS.GRAY_LIGHT};
 margin-bottom: 1.7rem;
 

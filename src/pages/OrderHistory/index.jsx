@@ -13,6 +13,7 @@ export function OrderHistory() {
     const isAdm = IsAdm()
 
     const [orders, setOrder] = useState([])
+    const [ordersAdm, setOrdersAdm] = useState([]);
 
     useEffect(() => {
         async function FetchOrderById() {
@@ -22,6 +23,34 @@ export function OrderHistory() {
         }
         FetchOrderById()
     }, [])
+
+    useEffect(() => {
+        async function fetchOrdersAdm() {
+            const response = await api.get(`/users/orders`)
+            setOrdersAdm(response.data)
+            console.log(response.data);
+        }
+
+        if (isAdm) {
+            fetchOrdersAdm();
+        }
+
+    }, [isAdm]);
+
+    function GetIconStatus(status) {
+        switch (status) {
+            case "Pendente":
+                return '🟡'
+            case "Aprovado":
+                return '🟠'
+            case "Pedido Entregue":
+                return '🟢'
+            case "Cancelado":
+                return '🔴'
+        }
+
+    }
+
     return (
         <Container>
             <NewHeader />
@@ -33,25 +62,31 @@ export function OrderHistory() {
                             isAdm ?
                                 <>
                                     <h1>Pedidos</h1>
-                                    <TableMobile>
-                                        <div className="table-heade">
-                                            <div>000004</div>
-                                            <div>🟡 Pendente</div>
-                                            <div>20/05 às 18h00</div>
-                                        </div>
-                                        <div className="table-body">
-                                            <span>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</span>
-                                        </div>
-                                        <div className="box-select">
-                                            <select>
-                                                <option value="Pendente">🟡 Pendente</option>
-                                                <option value="Aprovado">🟠 Aprovado</option>
-                                                <option value="Pedido Entregue">🟢 Pedido Entregue</option>
-                                                <option value="Cancelado">🔴 Cancelado</option>
-                                            </select>
-                                        </div>
-                                    </TableMobile>
+                                    {
+                                        ordersAdm.map(orderAdm => (
+                                            <TableMobile>
+                                                <div className="table-heade">
+                                                    <div>{orderAdm.id.toString().padStart(6, "0")}</div>
+                                                    <div>{GetIconStatus(orderAdm.status)}{orderAdm.status}</div>
+                                                    <div>{new Date(orderAdm.created_at).toLocaleDateString('pt-BR')}
+                                                        às {new Date(orderAdm.created_at).toLocaleTimeString('pt-BR',
+                                                            { timeZone: 'America/Sao_Paulo', hour: 'numeric', minute: 'numeric' })}</div>
+                                                </div>
+                                                <div className="table-body">
+                                                    <span> {orderAdm.dishes.map(dish => (`${dish.quantity} x ${dish.name}`)).join(", ")}</span>
+                                                </div>
+                                                <div className="box-select">
+                                                    <select value={orderAdm.status}>
+                                                        <option value="Pendente">🟡 Pendente</option>
+                                                        <option value="Aprovado">🟠 Aprovado</option>
+                                                        <option value="Pedido Entregue">🟢 Pedido Entregue</option>
+                                                        <option value="Cancelado">🔴 Cancelado</option>
+                                                    </select>
+                                                </div>
+                                            </TableMobile>
 
+                                        ))
+                                    }
                                 </>
                                 :
                                 <>
@@ -64,8 +99,10 @@ export function OrderHistory() {
 
                                                     <div className="table-heade">
                                                         <div>{order.id.toString().padStart(6, "0")}</div>
-                                                        <div>{order.status}</div>
-                                                        <div>{new Date(order.created_at).toLocaleDateString('pt-BR')} às {new Date(order.created_at).toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: 'numeric', minute: 'numeric' })}</div>
+                                                        <div>{GetIconStatus(order.status)}{order.status}</div>
+                                                        <div>{new Date(order.created_at).toLocaleDateString('pt-BR')}
+                                                            às {new Date(order.created_at).toLocaleTimeString('pt-BR',
+                                                                { timeZone: 'America/Sao_Paulo', hour: 'numeric', minute: 'numeric' })}</div>
                                                     </div>
                                                 }
                                                 <div className="table-body">
@@ -141,7 +178,7 @@ export function OrderHistory() {
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <h6>{order.status}</h6>
+                                                                <h6>{GetIconStatus(order.status)}{order.status}</h6>
                                                             </td>
                                                             <td>
                                                                 <span>{order.id.toString().padStart("6", 0)}</span>
@@ -150,9 +187,8 @@ export function OrderHistory() {
                                                                 <span>{order.dishes.map(dish => (`${dish.quantity} x ${dish.name}`)).join(", ")}</span>
                                                             </td>
                                                             <td>
-                                                                <span>{new Date(order.created_at).toLocaleDateString('pt-BR')} às
-                                                                    {new Date(order.created_at).toLocaleTimeString('pt-BR',
-                                                                        { timeZone: 'America/Sao_Paulo', hour: 'numeric', minute: 'numeric' })}
+                                                                <span>{new Date(order.created_at).toLocaleDateString('pt-BR')} às {new Date(order.created_at).toLocaleTimeString('pt-BR',
+                                                                    { timeZone: 'America/Sao_Paulo', hour: 'numeric', minute: 'numeric' })}
                                                                 </span>
                                                             </td>
                                                         </tr>

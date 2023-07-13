@@ -13,12 +13,14 @@ export function Home() {
     const carousel = useRef(null)
     const [search, setSearch] = useState("")
     const [dishes, setDishes] = useState([])
+    const [categories, setCategories] = useState([])
+    const [categoriesResponse, setCategoriesResponse] = useState([]);
 
-    const handleLeftClick = (e) => {
+    const handleLeftClick = () => {
         carousel.current.scrollLeft -= carousel.current.offsetWidth
     }
 
-    const handleRightClick = (e) => {
+    const handleRightClick = () => {
         carousel.current.scrollLeft += carousel.current.offsetWidth
     }
 
@@ -35,30 +37,59 @@ export function Home() {
         FetchDishes()
     }, [search])
 
+
+    useEffect(() => {
+        async function FetchCategory() {
+            const response = await api.get(`/categories`);
+            setCategories(response.data)
+            console.log(response.data);
+        }
+
+        FetchCategory()
+    }, [])
+
+    useEffect(() => {
+        if (categoriesResponse.length > 0 && dishes.length > 0) {
+
+            const newCategories = categoriesResponse.filter(category => {
+                return dishes.some(dish => dish.category_id == category.id)
+            })
+
+            setCategories(newCategories)
+        }
+    }, [dishes]);
+
     return (
         <Container>
             <Header handleCallback={handleCallback} />
             <main>
                 <BannerHome />
-                <section>
-                    <h1>Refeições</h1>
-                    <div className="btn-carousel">
-                        <ButtonSvg icon={AiOutlineLeft} id="arrow-left" onClick={handleLeftClick} />
+                {
+                    categories.map(category => (
 
-                        <div id="carousel" ref={carousel}>
-                            {
-                                dishes.map(dish => (
-                                    < Card
-                                        key={dish.id}
-                                        data={dish} />
-                                ))
-                            }
+                        <section key={category.id}>
+                            <h1>{category.name}</h1>
+                            <div className="btn-carousel">
+                                <ButtonSvg icon={AiOutlineLeft} id="arrow-left" onClick={handleLeftClick} />
 
-                        </div>
-                        <ButtonSvg icon={AiOutlineRight} id="arrow-right" onClick={handleRightClick} />
-                    </div>
+                                <div id="carousel" ref={carousel}>
+                                    {
+                                        dishes.map(dish => (
+                                            dish.category_id == category.id ?
+                                                < Card
+                                                    key={dish.id}
+                                                    data={dish} /> : null
+                                        ))
+                                    }
 
-                </section>
+                                </div>
+                                <ButtonSvg icon={AiOutlineRight} id="arrow-right" onClick={handleRightClick} />
+                            </div>
+
+                        </section>
+
+                    ))
+                }
             </main>
             <Footer />
         </Container >
