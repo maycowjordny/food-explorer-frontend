@@ -10,18 +10,21 @@ import { useState, useEffect } from "react";
 import { api } from "../../service/api";
 export function Home() {
 
-    const carousel = useRef(null)
+    const carousel = useRef([])
     const [search, setSearch] = useState("")
     const [dishes, setDishes] = useState([])
     const [categories, setCategories] = useState([])
     const [categoriesResponse, setCategoriesResponse] = useState([]);
 
-    const handleLeftClick = () => {
-        carousel.current.scrollLeft -= carousel.current.offsetWidth
+    const handleLeftClick = (e, index) => {
+        e.preventDefault()
+        carousel.current[index].scrollLeft -= carousel.current[index].offsetWidth
+        console.log(index);
     }
 
-    const handleRightClick = () => {
-        carousel.current.scrollLeft += carousel.current.offsetWidth
+    const handleRightClick = (e, index) => {
+        e.preventDefault()
+        carousel.current[index].scrollLeft += carousel.current[index].offsetWidth
     }
 
     const handleCallback = search => {
@@ -35,14 +38,14 @@ export function Home() {
         }
 
         FetchDishes()
-    }, [search])
+    }, [search, setCategoriesResponse])
 
 
     useEffect(() => {
         async function FetchCategory() {
             const response = await api.get(`/categories`);
-            setCategories(response.data)
-            console.log(response.data);
+            setCategoriesResponse(response.data)
+
         }
 
         FetchCategory()
@@ -65,14 +68,14 @@ export function Home() {
             <main>
                 <BannerHome />
                 {
-                    categories.map(category => (
+                    categories.map((category, index) => (
 
                         <section key={category.id}>
                             <h1>{category.name}</h1>
                             <div className="btn-carousel">
-                                <ButtonSvg icon={AiOutlineLeft} id="arrow-left" onClick={handleLeftClick} />
+                                <ButtonSvg icon={AiOutlineLeft} id="arrow-left" onClick={(e) => handleLeftClick(e, index)} />
 
-                                <div id="carousel" ref={carousel}>
+                                <div className="carousel" id={category.id} ref={ref => { carousel.current.push(ref) }} >
                                     {
                                         dishes.map(dish => (
                                             dish.category_id == category.id ?
@@ -83,7 +86,7 @@ export function Home() {
                                     }
 
                                 </div>
-                                <ButtonSvg icon={AiOutlineRight} id="arrow-right" onClick={handleRightClick} />
+                                <ButtonSvg icon={AiOutlineRight} id="arrow-right" onClick={(e) => handleRightClick(e, index)} />
                             </div>
 
                         </section>

@@ -26,7 +26,7 @@ export function OrderHistory() {
 
     useEffect(() => {
         async function fetchOrdersAdm() {
-            const response = await api.get(`/users/orders`)
+            const response = await api.get(`/users`)
             setOrdersAdm(response.data)
             console.log(response.data);
         }

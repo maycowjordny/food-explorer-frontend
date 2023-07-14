@@ -97,7 +97,7 @@ export function Header({ handleCallback }) {
                             {
                                 isAdm ? <Link to="/dish"><Button title="Novo prato" /></Link>
                                     :
-                                    <Link to="/order"> <Button icon={RiFileListLine} title={`Pedido (${dishes})`} /> </Link>
+                                    <Link to="/order"> <Button icon={RiFileListLine} title={`Pedido (${dishes == 0 ? 0 : dishes})`} /> </Link>
                             }
                         </div>
 
@@ -158,10 +158,13 @@ export function Header({ handleCallback }) {
                                     </Link>
                             }
                             <div className="order">
-                                <Link to="/order">
-                                    <ButtonSvg icon={RiFileListLine} />
-                                    <span>{dishes}</span>
-                                </Link>
+                                {
+                                    isAdm ? null :
+                                        <Link to="/order">
+                                            <ButtonSvg icon={RiFileListLine} />
+                                            <span>{dishes == 0 ? 0 : dishes}</span>
+                                        </Link>
+                                }
                             </div>
                         </MobileModel>
                         {

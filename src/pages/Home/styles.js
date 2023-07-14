@@ -22,12 +22,11 @@ section h1{
 .btn-carousel{
   display: flex;
   align-items: center;
-  overflow-x: auto;
-    
+  gap:0.5rem;  
   padding-bottom: 4.6rem;
 
 
-  #carousel{
+  .carousel{
     width: 100%;
     display: flex;
     gap: 1.6rem; 
@@ -51,7 +50,7 @@ section h1{
         section{
             #buttonsCarousel{
                 display: flex;
-                #carousel{
+                .carousel{
                     display: flex;
                     gap: 2.7rem;     
                 }
