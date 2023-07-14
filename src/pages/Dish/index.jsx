@@ -16,7 +16,7 @@ export function Dish() {
     const [isToEdit, setIsToEdit] = useState("")
 
 
-    const [dish, setDish] = useState([])
+    const [dish, setDish] = useState({})
 
     const [nameDish, setNameDish] = useState("")
     const [price, setPrice] = useState("")
@@ -58,6 +58,22 @@ export function Dish() {
     }, [isToEdit])
 
 
+    useEffect(() => {
+        if (!dish.id || !categories.length) {
+            return
+        }
+
+        setNameDish(dish.name)
+        setDescription(dish.description)
+        setPrice(dish.price)
+        setNewCategories(categories.filter(category => { return category.id == dish.category_id })[0])
+        const ingredientsName = dish.ingredients.map(ingredient => {
+            return ingredient.name
+        })
+        setIngredients(ingredientsName)
+        setImageFile(dish.image)
+
+    }, [categories, dish])
 
 
     function handleChangeImage(event) {
@@ -76,12 +92,14 @@ export function Dish() {
     }
 
 
+
+
     async function handleNewDish() {
         if (!nameDish) {
             return alert("Você esqueceu de adicionar um nome para seu prato.")
         }
 
-        if (!categories) {
+        if (categories) {
             return alert("Você esqueceu de adicionar uma categoria para seu prato.")
         }
 
@@ -95,12 +113,18 @@ export function Dish() {
 
         let body = new FormData();
 
-        body.append("image", imageFile)
+        if (imageFile) {
+            body.append("image", imageFile);
+        } else {
+            body.append("image", imageFile || dish.image);
+        }
+        console.log(imageFile);
         body.append("name", nameDish)
         body.append("description", description)
         body.append("category_id", parseInt(newCategories.id ? newCategories.id : newCategories))
         body.append("price", price)
         body.append("ingredients[]", ingredients)
+
 
         if (isToEdit) {
             await api.put(`/dishes/${id}`, body, {
@@ -133,30 +157,13 @@ export function Dish() {
 
     }
 
-    useEffect(() => {
-        if (!dish.id || !categories.length) {
-            return
-        }
 
-        setNameDish(dish.name)
-        setDescription(dish.description)
-        setPrice(dish.price)
-        setNewCategories(categories.filter(category => { return category.id == dish.category_id })[0])
-        const ingredientsName = dish.ingredients.map(ingredient => {
-            return ingredient.name
-        })
-        setIngredients(ingredientsName)
-        setImageFile(dish.image)
-
-    }, [categories, dish])
-
+    console.log(imageFile);
     async function handleDeleteDish() {
         if (confirm("Deseja realmente deletar este prato?")) {
             await api.delete(`dishes/${id}`)
             alert("Prato deletado com sucesso!");
             navigate("/")
-        } else {
-            return
         }
     }
 
@@ -194,6 +201,8 @@ export function Dish() {
                         <label htmlFor="name">Nome </label>
                         <Input
                             type="name"
+                            id="name"
+                            value={nameDish}
                             placeholder="Ex.: Salada Ceasar"
                             onChange={e => setNameDish(e.target.value)}
                         />
@@ -244,6 +253,7 @@ export function Dish() {
                         <label htmlFor="price">Preço</label>
                         <Input
                             type="number"
+                            id="price"
                             placeholder="R$ 00,00"
                             value={price}
                             onChange={e => setPrice(e.target.value)}
@@ -254,6 +264,7 @@ export function Dish() {
                     <div id="inputTextArea">
                         <label htmlFor="description">Descrição</label>
                         <TextArea
+                            id="description"
                             value={description}
                             placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
                             onChange={e => setDescription(e.target.value)}
