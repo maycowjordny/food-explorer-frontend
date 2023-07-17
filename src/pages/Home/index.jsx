@@ -19,7 +19,6 @@ export function Home() {
     const handleLeftClick = (e, index) => {
         e.preventDefault()
         carousel.current[index].scrollLeft -= carousel.current[index].offsetWidth
-        console.log(index);
     }
 
     const handleRightClick = (e, index) => {

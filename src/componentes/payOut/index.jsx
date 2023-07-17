@@ -113,7 +113,7 @@ export function PayOut() {
                     id="button-pix"
                     icon={FaQrcode}
                     onClick={() => handleClick("Pix")}
-                    className={!payment ? " " : "active"}
+                    className={!payment ? "active" : " "}
                     disabled={disableButtons}
                 />
 
@@ -122,8 +122,9 @@ export function PayOut() {
                     title="Crédito"
                     id="button-credit"
                     onClick={() => handleClick("Cartão de crédito")}
-                    className={payment ? " " : "active"}
+                    className={payment ? "active" : " "}
                     disabled={disableButtons}
+
                 />
             </div>
 

@@ -83,6 +83,10 @@ export function Dish() {
         setImage(imagePreview)
     }
     const handleAddIngredient = () => {
+        if (!newIngredients) {
+            return alert("Você esqueceu de adicionar um novo ingrediente.");
+        }
+
         setIngredients(prevState => [...prevState, newIngredients])
         setNewIngredients("")
     }
@@ -99,7 +103,7 @@ export function Dish() {
             return alert("Você esqueceu de adicionar um nome para seu prato.")
         }
 
-        if (categories) {
+        if (newCategories == "Selecione uma categoria" || newCategories.id == 0) {
             return alert("Você esqueceu de adicionar uma categoria para seu prato.")
         }
 
@@ -107,9 +111,14 @@ export function Dish() {
             return alert("Você esqueceu de adicionar um preço para seu prato.")
         }
 
-        if (newIngredients) {
-            return alert("Você esqueceu de adicionar os ingredientes do seu prato.")
+        if (ingredients.length === 0) {
+            return alert("Você esqueceu de adicionar os ingredientes do seu prato.");
         }
+
+        if (!description) {
+            return alert("Você esqueceu de adicionar uma descrição para seu prato.")
+        }
+
 
         let body = new FormData();
 
@@ -118,7 +127,6 @@ export function Dish() {
         } else {
             body.append("image", imageFile || dish.image);
         }
-        console.log(imageFile);
         body.append("name", nameDish)
         body.append("description", description)
         body.append("category_id", parseInt(newCategories.id ? newCategories.id : newCategories))

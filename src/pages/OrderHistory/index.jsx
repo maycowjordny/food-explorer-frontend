@@ -28,7 +28,6 @@ export function OrderHistory() {
         async function fetchOrdersAdm() {
             const response = await api.get(`/users`)
             setOrdersAdm(response.data)
-            console.log(response.data);
         }
 
         if (isAdm) {
@@ -49,6 +48,21 @@ export function OrderHistory() {
                 return '🔴'
         }
 
+    }
+
+    async function updateStatus(orderId, newStatus) {
+        const updateOrdersAdm = ordersAdm.map(orderAdm => {
+            if (orderAdm.id === orderId) {
+                return { ...orderAdm, status: newStatus }
+            } else {
+                return orderAdm
+            }
+        })
+
+        setOrdersAdm(updateOrdersAdm)
+
+        await api.patch(`orders/${orderId}`, { status: newStatus })
+        alert("Status atualizado com sucesso!")
     }
 
     return (
@@ -76,7 +90,7 @@ export function OrderHistory() {
                                                     <span> {orderAdm.dishes.map(dish => (`${dish.quantity} x ${dish.name}`)).join(", ")}</span>
                                                 </div>
                                                 <div className="box-select">
-                                                    <select value={orderAdm.status}>
+                                                    <select value={orderAdm.status} onChange={e => updateStatus(orderAdm.id, e.target.value)}>
                                                         <option value="Pendente">🟡 Pendente</option>
                                                         <option value="Aprovado">🟠 Aprovado</option>
                                                         <option value="Pedido Entregue">🟢 Pedido Entregue</option>
@@ -120,49 +134,52 @@ export function OrderHistory() {
                     <main>
                         {
                             isAdm ?
-                                <TableDeskTop>
-                                    <h1>Histórico de pedidos</h1>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Status</th>
-                                                <th>Código </th>
-                                                <th>Detalhamento </th>
-                                                <th>Data e hora</th>
-                                            </tr>
-
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td>
-                                                    <select>
-                                                        <option value="Pendente">🟡 Pendente</option>
-                                                        <option value="Aprovado">🟠 Aprovado</option>
-                                                        <option value="Pedido Entregue">🟢 Pedido Entregue</option>
-                                                        <option value="Cancelado">🔴 Cancelado</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <span>00000004</span>
-                                                </td>
-                                                <td>
-                                                    <span>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</span>
-                                                </td>
-                                                <td>
-                                                    <span>20/05 às 18h00</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </TableDeskTop>
+                                <>
+                                    {
+                                        ordersAdm.map(orderAdm => (
+                                            <TableDeskTop>
+                                                <h1>Histórico de pedidos</h1>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Status</th>
+                                                            <th>Código </th>
+                                                            <th>Detalhamento </th>
+                                                            <th>Data e hora</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <select value={orderAdm.status} onChange={e => updateStatus(orderAdm.id, e.target.value)} >
+                                                                    <option value="Pendente">🟡 Pendente</option>
+                                                                    <option value="Aprovado">🟠 Aprovado</option>
+                                                                    <option value="Pedido Entregue">🟢 Pedido Entregue</option>
+                                                                    <option value="Cancelado">🔴 Cancelado</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <span>{orderAdm.id.toString().padStart(6, "0")}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span>{orderAdm.dishes.map(dish => (`${dish.quantity} x ${dish.name}`)).join(", ")}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span>{new Date(orderAdm.created_at).toLocaleDateString('pt-BR')}
+                                                                    às {new Date(orderAdm.created_at).toLocaleTimeString('pt-BR',
+                                                                        { timeZone: 'America/Sao_Paulo', hour: 'numeric', minute: 'numeric' })}</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </TableDeskTop>
+                                        ))
+                                    }
+                                </>
                                 :
-
                                 <>
                                     {
                                         orders.map(order => (
-
-
                                             <TableDeskTop>
                                                 <h1>Histórico de pedidos</h1>
                                                 <table>
@@ -192,7 +209,6 @@ export function OrderHistory() {
                                                                 </span>
                                                             </td>
                                                         </tr>
-
                                                     </tbody>
                                                 </table>
                                             </TableDeskTop>
