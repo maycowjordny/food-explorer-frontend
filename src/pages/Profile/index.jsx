@@ -42,12 +42,18 @@ export function Profile() {
         const imagePreview = URL.createObjectURL(file)
         setAvatar(imagePreview)
     }
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleUpdate();
+        }
+    };
     return (
         <Container>
             <header>
                 <Link to="/"><ButtonSvg icon={FiArrowLeft} id="button-back" /></Link>
             </header>
-            <Form>
+            <Form onKeyDown={handleKeyDown}>
 
                 <ProfileImg>
                     <img src={avatar}

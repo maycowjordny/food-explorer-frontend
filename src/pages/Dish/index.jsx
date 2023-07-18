@@ -166,7 +166,6 @@ export function Dish() {
     }
 
 
-    console.log(imageFile);
     async function handleDeleteDish() {
         if (confirm("Deseja realmente deletar este prato?")) {
             await api.delete(`dishes/${id}`)

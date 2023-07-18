@@ -7,6 +7,7 @@ import { api } from "../../service/api";
 
 export function Order({ data, ...rest }) {
     const isMobile = Resize()
+
     async function handleRemoveDish(orderId, dishId) {
         try {
             await api.delete(`/orders/${orderId}`, {

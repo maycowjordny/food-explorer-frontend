@@ -14,9 +14,16 @@ export function SignIn() {
     const [password, setPassword] = useState("")
     const { signIn } = useAuth()
 
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleSignIn();
+        }
+    };
+
     function handleSignIn() {
         signIn({ email, password })
     }
+
 
     const isMobile = Resize();
     return (
@@ -30,7 +37,7 @@ export function SignIn() {
             </section>
 
             <main>
-                <Form>
+                <Form onKeyDown={handleKeyDown}>
 
                     {
                         isMobile > WINDOW_MOBILE_WIDTH ?

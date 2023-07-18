@@ -11,7 +11,7 @@ import { api } from "../../service/api";
 
 
 export function SignUp() {
-
+    const isMobile = Resize();
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -35,7 +35,11 @@ export function SignUp() {
 
     }
 
-    const isMobile = Resize();
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleSignUp();
+        }
+    };
 
     return (
         <Container>
@@ -48,7 +52,7 @@ export function SignUp() {
             </section>
 
             <main>
-                <Form>
+                <Form onKeyDown={handleKeyDown}>
 
                     {
                         isMobile > WINDOW_MOBILE_WIDTH ?

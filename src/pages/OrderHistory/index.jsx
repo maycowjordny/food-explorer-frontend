@@ -14,14 +14,12 @@ export function OrderHistory() {
 
     const [orders, setOrder] = useState([])
     const [ordersAdm, setOrdersAdm] = useState([]);
-
     useEffect(() => {
-        async function FetchOrderById() {
-            const orderId = localStorage.getItem("orderId")
-            const response = await api.get(`/orders/${orderId}`)
+        async function FetchOrder() {
+            const response = await api.get(`/orders`)
             setOrder(response.data)
         }
-        FetchOrderById()
+        FetchOrder()
     }, [])
 
     useEffect(() => {
@@ -62,6 +60,8 @@ export function OrderHistory() {
         setOrdersAdm(updateOrdersAdm)
 
         await api.patch(`orders/${orderId}`, { status: newStatus })
+
+
         alert("Status atualizado com sucesso!")
     }
 
@@ -78,7 +78,7 @@ export function OrderHistory() {
                                     <h1>Pedidos</h1>
                                     {
                                         ordersAdm.map(orderAdm => (
-                                            <TableMobile>
+                                            <TableMobile key={orderAdm.id}>
                                                 <div className="table-heade">
                                                     <div>{orderAdm.id.toString().padStart(6, "0")}</div>
                                                     <div>{GetIconStatus(orderAdm.status)}{orderAdm.status}</div>
@@ -135,21 +135,21 @@ export function OrderHistory() {
                         {
                             isAdm ?
                                 <>
-                                    {
-                                        ordersAdm.map(orderAdm => (
-                                            <TableDeskTop>
-                                                <h1>Histórico de pedidos</h1>
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Status</th>
-                                                            <th>Código </th>
-                                                            <th>Detalhamento </th>
-                                                            <th>Data e hora</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
+                                    <TableDeskTop>
+                                        <h1>Histórico de pedidos</h1>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Status</th>
+                                                    <th>Código </th>
+                                                    <th>Detalhamento </th>
+                                                    <th>Data e hora</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    ordersAdm.map(orderAdm => (
+                                                        <tr key={orderAdm.id}>
                                                             <td>
                                                                 <select value={orderAdm.status} onChange={e => updateStatus(orderAdm.id, e.target.value)} >
                                                                     <option value="Pendente">🟡 Pendente</option>
@@ -170,30 +170,30 @@ export function OrderHistory() {
                                                                         { timeZone: 'America/Sao_Paulo', hour: 'numeric', minute: 'numeric' })}</span>
                                                             </td>
                                                         </tr>
-                                                    </tbody>
-                                                </table>
-                                            </TableDeskTop>
-                                        ))
-                                    }
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </TableDeskTop>
                                 </>
                                 :
                                 <>
-                                    {
-                                        orders.map(order => (
-                                            <TableDeskTop>
-                                                <h1>Histórico de pedidos</h1>
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Status</th>
-                                                            <th>Código </th>
-                                                            <th>Detalhamento </th>
-                                                            <th>Data e hora</th>
-                                                        </tr>
+                                    <TableDeskTop>
+                                        <h1>Histórico de pedidos</h1>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Status</th>
+                                                    <th>Código </th>
+                                                    <th>Detalhamento </th>
+                                                    <th>Data e hora</th>
+                                                </tr>
 
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    orders.map(order => (
+                                                        <tr key={order.id}>
                                                             <td>
                                                                 <h6>{GetIconStatus(order.status)}{order.status}</h6>
                                                             </td>
@@ -209,11 +209,11 @@ export function OrderHistory() {
                                                                 </span>
                                                             </td>
                                                         </tr>
-                                                    </tbody>
-                                                </table>
-                                            </TableDeskTop>
-                                        ))
-                                    }
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </TableDeskTop>
                                 </>
                         }
                     </main>

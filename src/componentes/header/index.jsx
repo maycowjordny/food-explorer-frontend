@@ -22,6 +22,7 @@ export function Header({ handleCallback }) {
     const isAdm = IsAdm()
     const { signOut } = useAuth()
     const [menu, setMenu] = useState(false)
+    const [NumberOfDishes, setNumberOfDishes] = useState(0)
     const [search, setSearch] = useState("")
     const [dishes, setDishes] = useState(0)
     const [orders, setOrder] = useState([])
@@ -54,6 +55,16 @@ export function Header({ handleCallback }) {
         setDishes(numberOfDishes)
     }, [orders])
 
+
+    useEffect(() => {
+        if (orders[0]?.status !== "Pendente") {
+            setNumberOfDishes(0);
+            return;
+        }
+
+        const numberOfDishes = orders.map((item) => item.dishes.length).reduce((a, b) => a + b, 0);
+        setNumberOfDishes(numberOfDishes);
+    }, [orders]);
     return (
         <Container>
             {
@@ -97,7 +108,7 @@ export function Header({ handleCallback }) {
                             {
                                 isAdm ? <Link to="/dish"><Button title="Novo prato" /></Link>
                                     :
-                                    <Link to="/order"> <Button icon={RiFileListLine} title={`Pedido (${dishes == 0 ? 0 : dishes})`} /> </Link>
+                                    <Link to="/order"> <Button icon={RiFileListLine} title={`Pedido (${NumberOfDishes})`} /> </Link>
                             }
                         </div>
 
@@ -162,7 +173,7 @@ export function Header({ handleCallback }) {
                                     isAdm ? null :
                                         <Link to="/order">
                                             <ButtonSvg icon={RiFileListLine} />
-                                            <span>{dishes == 0 ? 0 : dishes}</span>
+                                            <span>{NumberOfDishes}</span>
                                         </Link>
                                 }
                             </div>

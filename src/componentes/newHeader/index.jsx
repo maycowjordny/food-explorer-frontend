@@ -22,9 +22,9 @@ export function NewHeader() {
     const navigate = useNavigate()
     const { signOut } = useAuth()
     const [menu, setMenu] = useState(false)
-    const [dishes, setDishes] = useState(0)
     const [orders, setOrder] = useState([])
     const [search, setSearch] = useState("")
+    const [NumberOfDishes, setNumberOfDishes] = useState(0)
     const orderId = localStorage.getItem("orderId")
     const handleMenu = () => {
         setMenu(!menu)
@@ -46,11 +46,16 @@ export function NewHeader() {
         FetchOrder()
     }, [orders, orderId])
 
-    useEffect(() => {
 
-        const numberOfDishes = orders.map(order => order.dishes.length)
-        setDishes(numberOfDishes)
-    }, [orders])
+    useEffect(() => {
+        if (orders[0]?.status !== "Pendente") {
+            setNumberOfDishes(0);
+            return;
+        }
+
+        const numberOfDishes = orders.map((item) => item.dishes.length).reduce((a, b) => a + b, 0);
+        setNumberOfDishes(numberOfDishes);
+    }, [orders]);
 
     return (
         <Container>
@@ -106,7 +111,7 @@ export function NewHeader() {
                         {
                             isAdm ? null :
                                 <div className="order-button">
-                                    <Link to="/order"><Button icon={RiFileListLine} title={`Pedido (${(dishes == 0 ? 0 : dishes)})`} /></Link>
+                                    <Link to="/order"><Button icon={RiFileListLine} title={`Pedido (${NumberOfDishes})`} /></Link>
                                 </div>
                         }
 
@@ -152,10 +157,11 @@ export function NewHeader() {
                                 <Link to="/order">
                                     {
                                         isAdm ? null :
-                                            <Link to="/order">
+                                            <>
                                                 <ButtonSvg icon={RiFileListLine} />
-                                                <span>{dishes == 0 ? 0 : dishes}</span>
-                                            </Link>
+                                                <span>{NumberOfDishes}</span>
+                                            </>
+
                                     }
                                 </Link>
                             </div>

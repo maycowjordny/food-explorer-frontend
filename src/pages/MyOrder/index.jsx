@@ -10,7 +10,6 @@ import { api } from "../../service/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
 export function MyOrder() {
     const isMobile = Resize()
     const [orders, setOrders] = useState([]);

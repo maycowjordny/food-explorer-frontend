@@ -16,20 +16,55 @@ export function PayOut() {
     const [status, setStatus] = useState(null)
     const [paymentMethod, setPaymentMethod] = useState()
     const [disableButtons, setDisableButtons] = useState(false)
+
     const [numberCard, setNumberCard] = useState(false)
     const [segurityCode, setSegurityCode] = useState(false)
     const [validate, setValidate] = useState(false)
+    const orderId = localStorage.getItem("orderId")
 
     const handlePayment = () => {
         setPayment(!payment)
     }
 
-    useEffect(() => {
-        const localStorageStatus = localStorage.getItem('@OrderStatus')
-        if (localStorageStatus) {
-            setStatus(localStorageStatus)
+    const handlePaymentMethod = (method) => {
+        setPaymentMethod(method);
+        if (method === "Pix") {
+            setTimeout(() => {
+                finalizePaymentPix();
+            }, 4000);
         }
-    }, [orders]);
+
+        api.patch(`/orders/${orderId}/payment`, { payment: method });
+    }
+
+    const handleClick = (method) => {
+        if (method === paymentMethod) {
+            return;
+        }
+        handlePayment();
+        handlePaymentMethod(method);
+    };
+
+
+    useEffect(() => {
+        async function fetchOrder() {
+            const response = await api.get(`/orders/${orderId}`)
+            setOrder(response.data)
+
+            if (response.data[0].payment == "Pix") {
+                setPayment(true)
+            }
+        }
+        fetchOrder()
+    }, [])
+
+    useEffect(() => {
+        const currentStatus = orders.map(order => order.status).toString()
+        if (currentStatus !== "Pendente") {
+            setStatus(currentStatus)
+        }
+
+    }, [orders])
 
     const hanldeFinalizePayment = () => {
         if (!numberCard) {
@@ -59,52 +94,15 @@ export function PayOut() {
     };
 
     useEffect(() => {
-        async function fetchOrder() {
-            const orderId = localStorage.getItem("orderId")
-            const response = await api.get(`/orders/${orderId}`)
-            setOrder(response.data)
-        }
-        fetchOrder()
-    }, [])
-
-
-    const handlePaymentMethod = (method) => {
-        if (method === "Pix") {
-            setTimeout(() => {
-                finalizePaymentPix();
-            }, 4000);
-        }
-        api.put(`/orders/${orderId}`, { payment: method });
-    }
-
-    const handleClick = (method) => {
-        if (method === paymentMethod) {
-            return;
-        }
-
-        handlePayment();
-        handlePaymentMethod(method);
-    };
-
-    useEffect(() => {
-        if (status === "Pendente" || status === "Aprovado" || status === "Pedido Entregue" || status === "Cancelado") {
+        if (status === "Pendente" ||
+            status === "Aprovado" ||
+            status === "Pedido Entregue" ||
+            status === "Cancelado") {
             setDisableButtons(true);
         } else {
             setDisableButtons(false);
         }
     }, [status]);
-
-    useEffect(() => {
-        function FetchStatus() {
-            const currentStatus = orders.map(order => order.status).toString()
-            if (currentStatus !== "Pendente") {
-                setStatus(currentStatus)
-            }
-        }
-        FetchStatus()
-    }, [orders])
-
-
     return (
         <Container>
             <div className="buttons-wrapper">
@@ -113,7 +111,7 @@ export function PayOut() {
                     id="button-pix"
                     icon={FaQrcode}
                     onClick={() => handleClick("Pix")}
-                    className={!payment ? "active" : " "}
+                    className={payment ? "active" : ""}
                     disabled={disableButtons}
                 />
 
@@ -122,7 +120,7 @@ export function PayOut() {
                     title="Crédito"
                     id="button-credit"
                     onClick={() => handleClick("Cartão de crédito")}
-                    className={payment ? "active" : " "}
+                    className={!payment ? "active" : ""}
                     disabled={disableButtons}
 
                 />
