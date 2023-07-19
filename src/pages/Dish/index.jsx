@@ -156,10 +156,13 @@ export function Dish() {
     }
 
     async function handleDeleteDish() {
-        await api.delete(`dishes/${id}`)
         if (confirm("Deseja realmente deletar este prato?")) {
+            await api.delete(`dishes/${id}`)
+
             alert("Prato deletado com sucesso!");
             navigate("/")
+        } else {
+            return
         }
     }
 

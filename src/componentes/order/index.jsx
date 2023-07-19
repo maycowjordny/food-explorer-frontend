@@ -26,6 +26,7 @@ export function Order({ data, ...rest }) {
         <Container {...rest}>
             {
                 data.dishes.map((dish, index) => (
+
                     <div key={index} className="modal">
 
                         <img src={dish.image ? `${api.defaults.baseURL}/image/${dish.image}` : dishPlaceholder} alt="imagem do prato" />

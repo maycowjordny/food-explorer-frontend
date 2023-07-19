@@ -70,7 +70,6 @@ color: ${({ theme }) => theme.COLORS.GRAY_LIGHT};
 
 @media (min-width: 1000px){
 width: 476px;
-height: 100vh;
 
 background-color: ${({ theme }) => theme.COLORS.BACKGROUND_BOLD};
 border-radius: 16px;

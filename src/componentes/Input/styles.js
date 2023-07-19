@@ -23,7 +23,7 @@ border-radius: 0.8rem;
 }
 
 svg{
-    margin-left:16px;
+    margin-left:1.6rem;
     color: ${({ theme }) => theme.COLORS.GRAY};
   }
 

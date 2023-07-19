@@ -1,7 +1,6 @@
 import { Container } from "./styles";
 import { ButtonSvg } from "../buttonSvg";
-import dishImage from "../../assets/imageDish.png"
-import { IsAdm, Resize } from "../../utils/index";
+import { IsAdm } from "../../utils/index";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { Button } from "../button";
 import { Tags } from "../Tags"
@@ -10,7 +9,6 @@ import { useState } from "react";
 import { Input } from "../Input";
 import dishPlaceholder from "../../assets/dish.png"
 import { api } from "../../service/api";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export function CardDetails({ data, ...rest }) {

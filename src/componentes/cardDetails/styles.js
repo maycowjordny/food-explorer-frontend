@@ -112,8 +112,8 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 #edit-button{
-    width: 316px;
-    height: 48px;
+    width: 31.6rem;
+    height: 4.8rem;
     margin-right: 1.6rem;
 }
 
