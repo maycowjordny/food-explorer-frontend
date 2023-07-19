@@ -10,11 +10,11 @@ Este é o backend do Desafio Final do programa Explorer da Rocketseat.
 
 Essa aplicação simula um restaurante fictício, conhecido como FoodExplorer, onde usuários podem se cadastrar, logar e realizar pedidos.
 
-os usuarios sao divididos em dois grupos cliente e adsministrador.
+os usuarios são divididos em dois grupos,cliente e adsministrador.
 
 Sendo o usuário um Administrador, ele poderá adicionar pratos, ingredientes e atualizar pedidos.
 
-Sendo o usuário um Cliente, ele poderá atualizar seu perfil, fazer um pedido, adicionar pratos a os favoritos.
+Sendo o usuário um Cliente, ele poderá atualizar seu perfil, fazer um pedido, adicionar pratos aos favoritos.
 
 # 📝Tecnologias
 
@@ -47,17 +47,18 @@ Sendo o usuário um Cliente, ele poderá atualizar seu perfil, fazer um pedido, 
 
 # 💡Utilização
 
-* Para utilizar esse projeto localmente, primeiro você precisará instalar o backend conforme essa [documentação](https://github.com/matheusvieira14/food_explorer-Backend_js).
+* Para utilizar esse projeto localmente, primeiro você precisará instalar o backend conforme essa [documentação](https://github.com/maycowjordny/food-explorer-backend).
 
 #### Clone o projeto
 ` 
-git clone https://github.com/matheusvieira14/final_Challenge-food_Exprorer.git 
+(https://github.com/maycowjordny/food-explorer-frontend.git)
 `
 
 #### Entre no diretório:
 
 ` 
-cd final_Challenge-food_Exprorer
+cd food-explorer-frontend
+
 `
 
 #### Instale as dependências:
@@ -83,5 +84,5 @@ admin@gmail.com
 `
 * senha: 
 `
-admin
+admin1
 `
