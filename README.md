@@ -4,7 +4,7 @@
  
 ![Capa do Projeto](src/assets/capa.jpg)
 
-# 💬Sobre
+## 💬Sobre
 
 Este é o backend do Desafio Final do programa Explorer da Rocketseat.
 
