@@ -14,15 +14,11 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 export function Dish() {
     const { id } = useParams();
     const [isToEdit, setIsToEdit] = useState("")
-
-
     const [dish, setDish] = useState({})
-
     const [nameDish, setNameDish] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
     const navigate = useNavigate()
-
     const [categories, setCategories] = useState([])
     const [newCategories, setNewCategories] = useState({ id: 0 })
     const [ingredients, setIngredients] = useState([])
@@ -57,7 +53,6 @@ export function Dish() {
         }
     }, [isToEdit])
 
-
     useEffect(() => {
         if (!dish.id || !categories.length) {
             return
@@ -72,9 +67,7 @@ export function Dish() {
         })
         setIngredients(ingredientsName)
         setImageFile(dish.image)
-
     }, [categories, dish])
-
 
     function handleChangeImage(event) {
         const file = event.target.files[0]
@@ -94,9 +87,6 @@ export function Dish() {
     const handleRemoveIngredient = (deleted) => {
         setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
     }
-
-
-
 
     async function handleNewDish() {
         if (!nameDish) {
@@ -165,10 +155,9 @@ export function Dish() {
 
     }
 
-
     async function handleDeleteDish() {
+        await api.delete(`dishes/${id}`)
         if (confirm("Deseja realmente deletar este prato?")) {
-            await api.delete(`dishes/${id}`)
             alert("Prato deletado com sucesso!");
             navigate("/")
         }

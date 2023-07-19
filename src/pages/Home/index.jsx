@@ -32,7 +32,7 @@ export function Home() {
 
     useEffect(() => {
         async function FetchDishes() {
-            const response = await api.get(`/dishes?name=${search}`);
+            const response = await api.get(`/dishes?name=${search}&ingredients=${search}`);
             setDishes(response.data)
         }
 

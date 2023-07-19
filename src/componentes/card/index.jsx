@@ -51,6 +51,7 @@ export function Card({ data, ...rest }) {
     }
 
     const imageUrl = data.image ? `${api.defaults.baseURL}/image/${data.image}` : dishPlaceholder;
+    console.log(data);
     return (
         <Container {...rest}>
             <div id="favorite">
