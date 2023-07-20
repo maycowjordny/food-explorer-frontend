@@ -68,7 +68,7 @@ npm install
 #### Defina a variável local, conforme o endereço que será gerado no backend. Exemplo:
 
 ` 
-baseURL: "https://localhost:3333"
+baseURL: "https://localhost:4444"
 `
 
 #### Inicie um servidor local para o frontend:
