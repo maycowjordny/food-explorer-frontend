@@ -58,7 +58,6 @@ Sendo o usuário um Cliente, ele poderá atualizar seu perfil, fazer um pedido, 
 
 ` 
 cd food-explorer-frontend
-
 `
 
 #### Instale as dependências:
